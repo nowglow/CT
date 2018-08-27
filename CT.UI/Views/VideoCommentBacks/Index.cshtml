@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CT.Model.VideoCommentBack>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">后台管理</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="#">视频评测二级评论</a></li>
+            <li><i class="fa fa-table"></i>二级评论管理</li>
+            @*<li><i class="fa fa-th-list"></i>删除</li>*@
+        </ol>
+    </div>
+</div>
+<section class="panel">
+    <h2>Index</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VCB_Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VCB_Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VC_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserInfo.UserInfo_Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VCB_Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VCB_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VC_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserInfo.UserInfo_Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.VCB_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.VCB_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.VCB_ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </section>

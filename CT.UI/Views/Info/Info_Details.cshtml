@@ -1,0 +1,149 @@
+﻿@model CT.UI.Models.InfoModel
+@{
+    Layout = "~/Views/Shared/_InfoContent.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Info_Details</title>
+</head>
+<body>
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <!-- BLOG SINGLE -->
+                    <div class="blog single full-thumbnail">
+                        <!-- blog post -->
+
+                        <article class="entry-post">
+                            <header class="entry-header">
+                                <h2 class="entry-title">
+                                    <a href="blog-single.html">@Model.Info_Title </a>
+                                </h2>
+                                <div class="meta-line clearfix">
+                                    
+                                    <div class="meta-tag-comment pull-right">
+                                        <span class="post-tags"><i class="fa fa-tag"></i> <a href="#">@Model.Info_Class</a>, <a href="#">@Model.ICC_Name</a></span>
+                                        <span class="post-comment"><i class="fa fa-comments"></i> <a href="#">点赞数 @ViewBag.infosupportnum ，反对数 @ViewBag.infoagainstnum</a></span>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="entry-content clearfix">
+                                <figure class="featured-image">
+                                    <div class="post-date-info clearfix"><span class="post-month">DEC</span><span class="post-date">11</span><span class="post-year">2014</span></div>
+                                    <img src="@Model.Info_Img" class="img-responsive" alt="featured-image" />
+
+                                </figure>
+                                <div class="excerpt">
+                                    <p>@Model.Info_Content</p>
+
+
+                                </div>
+                            </div>
+                        </article>
+                        <!-- end blog post -->
+                        <hr>
+
+                        <!-- author info -->
+                        <section class="author-info">
+                            <h3 class="section-heading">作者相关</h3>
+                            <div class="media">
+                               
+                                <div class="media-body">
+                                    <a href="#" class="author-name">Antonius</a>
+                                    <p>
+                                        太合音乐集团刚刚宣布，旗下百度音乐正式进行「品牌升级」，原百度音乐品牌现已更名为「千千音乐」，同时启用新的 Logo 与域名。现在，如果再打开百度音乐官网将会跳转至千千音乐的新域名。
+
+                                        据悉，百度音乐的 App 端、PC 端功能在更名后不会发生变化；但官方表示，未来千千音乐会推行「差异化运营」方针，除了提供相对大众化的音乐内容外，平台还会在细分音乐领域、整合相关音乐人方面发力，致力于扩展用户群体。
+                                    </p>
+                                </div>
+                            </div>
+
+                            @*查询用户是否点过赞
+                                如果点过赞则取消赞*@
+                            @if (ViewBag.infosupport != null)
+                            {
+                                <a href=" @Url.Action("Info_Details", "Info", new { infoid=Model.Info_ID,support = "no" }) "><img src="~/Content/InfoDemo/img/已赞.png" width="20" height="20" /><b>已点赞</b>  </a>
+
+                            }
+                            // 如果没点赞则点赞数加一
+                            else
+                            {
+
+                                <a href=" @Url.Action("Info_Details", "Info", new { infoid=Model.Info_ID,support = "yes" }) "> <img src="~/Content/InfoDemo/img/未赞.png" width="20" height="20" />点赞  </a>
+                            }
+                            @*查询用户是否点过踩
+                                如果点过赞则取消踩*@
+                            @if (ViewBag.infoagainst != null)
+                            {
+                                <a href=" @Url.Action("Info_Details", "Info", new { infoid=Model.Info_ID,against = "no" }) "><img src="~/Content/InfoDemo/img/已踩.png" width="20" height="20" /><b>已踩</b>  </a>
+
+                            }
+                            // 如果没点赞则点赞数加一
+                            else
+                            {
+
+                                <a href=" @Url.Action("Info_Details", "Info", new { infoid=Model.Info_ID,against = "yes" }) "> <img src="~/Content/InfoDemo/img/踩.png" width="20" height="20" />踩  </a>
+                            }
+                        </section>
+                        <!-- end author info -->
+                        <hr>
+                        @*//发表评论*@
+                        <section class="comment-form margin-bottom">
+                            @using (Html.BeginForm("InfoComment", "InfoComments", FormMethod.Post, new { id = "pinglun" }))
+                            {
+                                <h3 class="section-heading">留下评论</h3>
+
+                                @*<form class="form-horizontal comment-form" role="form">*@
+                                <div class="form-group">
+                                    <label for="comment-text" class="control-label sr-only">Comments</label>
+                                    <div class="col-sm-12">
+                                        <textarea class="form-control" name="comment-text" id="comment-text" rows="5" cols="30" placeholder="评论内容"></textarea>
+                                    </div>
+                                </div>
+                                Session["infoid"] = Model.Info_ID;
+                                <input type="hidden" name="infoid" value="@Model.Info_ID" />
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        @if (Session["user_Name"] != null)
+                                        {
+                                            <a href="javascript:document.getElementById('pinglun').submit()" class="btn btn-primary">发表评论</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#" class="btn btn-primary">发表</a>
+                                        }
+                                    </div>
+                                </div>
+
+                            }
+                        </section>
+
+                        <!-- comments -->
+                        <article class="comments">
+                            <h3 class="section-heading"> </h3>
+                            <ul class="media-list">
+                                @{ Html.RenderAction("InfoComment", "Info"); }
+                            </ul>
+                        </article>
+
+
+
+
+
+                        <!-- end comments -->
+                        <hr>
+
+                    </div>
+                    <!-- END BLOG SINGLE -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

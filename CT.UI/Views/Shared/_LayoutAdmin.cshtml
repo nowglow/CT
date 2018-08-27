@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>后台管理</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/AdminDemo/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="~/Content/AdminDemo/css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="~/Content/AdminDemo/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/Content/AdminDemo/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- full calendar css-->
+    <link href="~/Content/AdminDemo/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content/AdminDemo/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <!-- easy pie chart-->
+    <link href="~/Content/AdminDemo/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="~/Content/AdminDemo/css/owl.carousel.css" type="text/css">
+    <link href="~/Content/AdminDemo/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/Content/AdminDemo/css/fullcalendar.css">
+    <link href="~/Content/AdminDemo/css/widgets.css" rel="stylesheet">
+    <link href="~/Content/AdminDemo/css/style.css" rel="stylesheet">
+    <link href="~/Content/AdminDemo/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content/AdminDemo/css/xcharts.min.css" rel=" stylesheet">
+    <link href="~/Content/AdminDemo/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <link href="~/Content/UserDemo/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- container section start -->
+    <section id="container" class="">
+
+        <!--顶部-->
+        <header class="header dark-bg">
+            <div class="toggle-nav">
+                <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
+            </div>
+
+            <!--logo start-->
+            <a href="@Url.Action("Info_Index", "Info")" class="logo">云端 <span class="lite">科技</span></a>
+            <!--logo end-->
+
+            <div class="nav search-row" id="top_menu">
+            </div>
+
+            <div class="top-nav notification-row">
+                <ul class="nav pull-right top-menu">
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="img/avatar1_small.jpg">
+                            </span>
+                            <span class="username">@Session["Admin_Name"]</span>
+
+                        </a>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+            </div>
+        </header>
+        <!--顶部 end-->
+        <!--导航栏-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu">
+                    <li class="active">
+                        <a class="" href="@Url.Action("Index", "AdminHome")">
+                            <i class="icon_house_alt"></i>
+                            <span>主页</span>
+                        </a>
+                    </li>
+                    @*新闻资讯*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>新闻资讯</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="@Url.Action("Index", "Info")">资讯首页</a></li>
+                            <li><a class="" href="@Url.Action("Create", "Info")">添加资讯</a></li>
+                            <li><a class="" href="@Url.Action("Index", "InfoClass")">资讯分类</a></li>
+                        </ul>
+                    </li>
+                    @*科技评测*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_desktop"></i>
+                            <span>科技评测</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="@Url.Action("Index", "Video")">评测主页</a></li>
+                            <li><a class="" href="@Url.Action("Create","Video")">添加评测</a></li>
+                            <li><a class="" href="@Url.Action("Index", "VideoClass")">评测分类</a></li>
+                        </ul>
+                    </li>
+                    @*商城管理*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_genius"></i>
+                            <span>商城管理</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="@Url.Action("Index","Goods")">商城首页</a></li>
+                            <li><a class="" href="@Url.Action("Create","Goods")">添加商品</a></li>
+                            <li><a class="" href="@Url.Action("Index","GoodsClass")">商品分类</a></li>
+                        </ul>
+                    </li>
+                    @*用户管理*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_table"></i>
+                            <span>用户管理</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="@Url.Action("Index", "UserInfoes")">用户管理主页</a></li>
+                        </ul>
+                    </li>
+                    @*评测评论管理*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_documents_alt"></i>
+                            <span>评测评论管理</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="@Url.Action("Index", "VideoComments")">评论</a></li>
+                            <li><a class="" href="@Url.Action("Index", "VideoCommentBacks")"><span>二级评论</span></a></li>
+                        </ul>
+                    </li>
+                    @*资讯评论管理*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_documents_alt"></i>
+                            <span>资讯评论管理</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li><a class="" href="@Url.Action("Index", "InfoComments")">评论</a></li>
+                            <li><a class="" href="@Url.Action("Index", "InfoCommentBacks")"><span>二级评论</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--导航栏 end-->
+        <!--内容-->
+        <section id="main-content">
+            <section class="wrapper">
+                @RenderBody()
+            </section>
+        </section>
+        <!--内容 end-->
+    </section>
+
+    @*<script src="~/Content/AdminDemo/js/jquery-1.8.3.min.js"></script>*@
+    @*<script src="~/Content/AdminDemo/js/jquery.js"></script>*@
+    <script src="~/Content/AdminDemo/js/jquery-ui-1.10.4.min.js"></script>
+
+    <script type="text/javascript" src="~/Content/AdminDemo/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <!-- bootstrap -->
+    <script src="~/Content/AdminDemo/js/bootstrap.min.js"></script>
+    <!-- nice scroll -->
+    <script src="~/Content/AdminDemo/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Content/AdminDemo/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <!-- charts scripts -->
+    <script src="~/Content/AdminDemo/assets/jquery-knob/js/jquery.knob.js"></script>
+    <script src="~/Content/AdminDemo/js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="~/Content/AdminDemo/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="~/Content/AdminDemo/js/owl.carousel.js"></script>
+    <!-- jQuery full calendar -->
+    <
+    <script src="~/Content/AdminDemo/js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+    <script src="~/Content/AdminDemo/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+    <!--script for this page only-->
+    <script src="~/Content/AdminDemo/js/calendar-custom.js"></script>
+    <script src="~/Content/AdminDemo/js/jquery.rateit.min.js"></script>
+    <!-- custom select -->
+    <script src="~/Content/AdminDemo/js/jquery.customSelect.min.js"></script>
+    <script src="~/Content/AdminDemo/assets/chart-master/Chart.js"></script>
+
+    <!--custome script for all page-->
+    <script src="~/Content/AdminDemo/js/scripts.js"></script>
+    <!-- custom script for this page-->
+    <script src="~/Content/AdminDemo/js/sparkline-chart.js"></script>
+    <script src="~/Content/AdminDemo/js/easy-pie-chart.js"></script>
+    <script src="~/Content/AdminDemo/js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Content/AdminDemo/js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Content/AdminDemo/js/xcharts.min.js"></script>
+    <script src="~/Content/AdminDemo/js/jquery.autosize.min.js"></script>
+    <script src="~/Content/AdminDemo/js/jquery.placeholder.min.js"></script>
+    <script src="~/Content/AdminDemo/js/gdp-data.js"></script>
+    <script src="~/Content/AdminDemo/js/morris.min.js"></script>
+    <script src="~/Content/AdminDemo/js/sparklines.js"></script>
+    <script src="~/Content/AdminDemo/js/charts.js"></script>
+    <script src="~/Content/AdminDemo/js/jquery.slimscroll.min.js"></script>
+    <script>
+
+        //knob
+        $(function () {
+            $(".knob").knob({
+                'draw': function () {
+                    $(this.i).val(this.cv + '%')
+                }
+            })
+        });
+
+        //carousel
+        $(document).ready(function () {
+            $("#owl-slider").owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true
+
+            });
+        });
+
+        //custom select box
+
+        $(function () {
+            $('select.styled').customSelect();
+        });
+
+        /* ---------- Map ---------- */
+        $(function () {
+            $('#map').vectorMap({
+                map: 'world_mill_en',
+                series: {
+                    regions: [{
+                        values: gdpData,
+                        scale: ['#000', '#000'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                backgroundColor: '#eef3f7',
+                onLabelShow: function (e, el, code) {
+                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                }
+            });
+        });
+
+
+
+    </script>
+
+</body>
+</html>

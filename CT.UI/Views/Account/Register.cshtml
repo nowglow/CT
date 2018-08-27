@@ -1,0 +1,171 @@
+﻿@model CT.UI.Models.RegisterModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>注册</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="~/Content/UserDemo/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/UserDemo/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/UserDemo/css/form-elements.css">
+    <link rel="stylesheet" href="~/Content/UserDemo/css/style.css">
+
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/UserDemo/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/UserDemo/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/UserDemo/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/UserDemo/ico/apple-touch-icon-57-precomposed.png">
+    <!-- Javascript -->
+    <script src="~/Content/UserDemo/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Content/UserDemo/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/UserDemo/js/jquery.backstretch.min.js"></script>
+    <script src="~/Content/UserDemos/js/retina-1.1.0.min.js"></script>
+    <script src="~/Content/UserDemo/js/scripts.js"></script>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/MyAjaxForm.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript">
+        //更换验证码
+        function changeCheckCode() {
+            $("#img").attr("src", $("#img").attr("src") + 1);
+        }
+        //注册 回调结果
+        function afterResister(data) {
+            var serverData = data.split(':');
+            if (serverData[0] == "ok") {
+                alert("注册成功！");
+                window.location.href = "/Account/Login"
+            } else if (serverData[0] == "no") {
+                $("#errorMsg").text(serverData[1]);
+                changeCheckCode();
+            } else {
+                window.location.href = "/Error.html"
+            }
+
+        }
+        $(function () {
+            bindFileUpload();
+        });
+        //文件异步上传
+        function bindFileUpload() {
+            $("#btnUpload").click(function () {
+                if ($("#imgIcon").val() == "") {
+                    alert( "请选择图片文件");
+                    return;
+                }
+
+                $("#registerForm").ajaxSubmit({
+                    type: 'post',
+                    url: '/Account/FileUpload',
+                    success: function (data) {
+                        var serverData = data.split(':');
+                        if (serverData[0] == "ok") {
+                            $("#hidImage").attr("value", serverData[1]);//将服务端返回的图片路径赋给隐藏域
+                            $("#menuIconShow").append("<img src='" + serverData[1] + "' width='40px' height='40px' />");
+                        } else {
+                            alert("图片上传错误!");
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+    <style type="text/css">
+        body {
+            background-image: url('../../Content/UserDemo/img/backgrounds/2.jpg');
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="top-content">
+
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7 text">
+                        <h1><strong>云端科技</strong> </h1>
+                        <div class="description">
+
+                        </div>
+                        <div class="top-big-link">
+                            <a class="btn btn-link-1" href="@Url.Action("Login","Account")">注册</a>
+                            <a class="btn btn-link-2" href="@Url.Action("Register","Account")">登录</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>注册</h3>
+                                <p>Welcome to Cloud Technology！</p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            @using (Ajax.BeginForm("CheckRegister", new { }, new AjaxOptions() { OnSuccess = "afterResister" }, new { id = "registerForm" }))
+    {
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })                    
+                                    <div class="form-group">
+                                        <h4>用户名：</h4>
+                                      
+                                        @Html.EditorFor(u => u.User_Name, new { @class = "form-first-name form-control" })
+                                        @Html.ValidationMessageFor(u => u.User_Name, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <h4>密码：</h4>
+                                      
+                                        @Html.EditorFor(u => u.User_Password, new { @class = "form-first-name form-control" })
+                                        @Html.ValidationMessageFor(u => u.User_Password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <h4>邮箱：</h4>                                      
+                                        @Html.EditorFor(u => u.User_Email, new { @class = "form-first-name form-control" })
+                                        @Html.ValidationMessageFor(u => u.User_Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <h4>电话：</h4>                                    
+                                        @Html.EditorFor(u => u.User_Phone, new { @class = "form-first-name form-control" })
+                                        @Html.ValidationMessageFor(u => u.User_Phone, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <h4>头像：</h4>
+                                        <input type="file" name="MenuIcon" id="imgIcon" /><input type="button" id="btnUpload" value="异步上传" />
+                                        <input type="hidden" id="hidImage" name="User_Img" />
+                                        <div id="menuIconShow">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h4>验证码：</h4>
+                                        <input type="text" class="login-text" id="code" name="vCode" value="1" />
+
+                                        <img id="img" src="/Account/ValidateCode/?id=1" style=" height: 48px;" />
+                                        <div style="float: left; margin-left: 5px; margin-top: 10px;">
+                                            <a href="javascript:void(0)" onclick="changeCheckCode();return false;">看不清，换一张</a>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn">注册</button>
+            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

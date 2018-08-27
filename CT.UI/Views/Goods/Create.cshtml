@@ -1,0 +1,190 @@
+﻿@model CT.Model.Goods
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+@*JS验证 end*@
+
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/MyAjaxForm.js"></script>
+<script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+@*百度富文本框*@
+<!-- 配置文件 -->
+<script src="~/utf8-net/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script src="~/utf8-net/ueditor.all.js"></script>
+<link href="~/utf8-net/themes/iframe.css" rel="stylesheet" />
+<script src="~/utf8-net/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+
+    //实例化编辑器
+    var editor = new baidu.editor.ui.Editor({
+        autoHeightEnabled: true,//高度自动增长
+        minFrameHeight: 500//最小高度
+    });
+    editor.render('editor');
+    @* 下拉框联动 *@
+    $(function () {
+        //GetProvince(); //加载省份
+        GetCity();
+        //省份变动，加载城市
+        $("#Province").change(function () {
+            GetCity();
+        });
+    });
+    function GetProvince() {
+        //        $("#Province").empty();
+        $.getJSON(
+            "/Goods/GetProvincelist",
+            function (data) {
+
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["Type_ID"]).text(item["Type_Name"]).appendTo($("#Province"));
+                })
+            });
+        //            GetCity();
+    }
+    function GetCity() {
+        $("#City").empty();
+        $.getJSON(
+            "/Goods/GetCitylist",
+            { pid: $("#Province").val() },
+            function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["Value"]).text(item["Text"]).appendTo($("#City"));
+
+                })
+            });
+    }
+    //结果回调
+    function afterCreate(data) {
+        var serverData = data.split(':');
+
+        if (serverData[0] == "ok") {
+            alert("发布成功！");
+            window.location.href = "/Goods/Index"
+        } else if (serverData[0] == "no") {
+            alert("发布失败！");
+            $("#errorMsg").text(serverData[1]);
+            changeCheckCode();
+        } else {
+            window.location.href = "/Error.html"
+        }
+
+    }
+    //封面异步上传
+    $(function () {
+        bindFileUpload();
+    });
+    function bindFileUpload() {
+        $("#btnUpload").click(function () {
+            if ($("#imgIcon").val() == "") {
+                alert("请选择图片文件");
+                return;
+            }
+
+            $("#registerForm").ajaxSubmit({
+                type: 'post',
+                url:'/Goods/FileUpload',
+                success: function (data) {
+                    var serverData = data.split(':');
+                    if (serverData[0] == "ok") {
+                        $("#hidImage").attr("value", serverData[1]);//将服务端返回的图片路径赋给隐藏域
+                        $("#menuIconShow").append("<img src='" + serverData[1] + "' width='40px' height='40px' />");
+                    } else {
+                        alert("图片上传错误!");
+                    }
+                }
+            });
+        });
+    }
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">后台管理</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="#">商品信息</a></li>
+            <li><i class="fa fa-table"></i>商品信息管理</li>
+            <li><i class="fa fa-th-list"></i>添加商品</li>
+        </ol>
+    </div>
+</div>
+<section class="panel">
+    <div>
+        @Html.ActionLink("返回主页", "Index")
+    </div>
+
+    <div class="form-horizontal">
+        @using (Ajax.BeginForm("AfterCreate", new { }, new AjaxOptions() { OnSuccess = "afterCreate", HttpMethod = "Post" }, new { id = "registerForm" }))
+        {
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("名称", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Goods_Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Goods_Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("详情", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <textarea id="editor" name="Goods_Content"></textarea>
+                    @Html.ValidationMessageFor(model => model.Goods_Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("价格", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Goods_Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Goods_Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("图片", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="MenuIcon" id="imgIcon" />
+                    <input type="button" id="btnUpload" value="异步上传" />
+                    <input type="hidden" id="hidImage" name="Goods_Img" />
+                    <div id="menuIconShow">
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Goods_Img, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("一级分类", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Type_ID, ViewBag.GoodsClass as SelectList, "请选择一级分类", new { @class = "form-control m-bot15", id = "Province" })<br />
+                    @Html.ValidationMessageFor(model => model.Type_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("二级分类", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Border_ID, ViewBag.GoodsClass as SelectList, "请选择二级分类", new { @class = "form-control m-bot15", id = "City" })<br />
+                    @Html.ValidationMessageFor(model => model.Border_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-primary" type="submit">发布</button>
+                </div>
+            </div>
+        }
+    </div>
+
+    <hr />
+    <hr />
+</section>

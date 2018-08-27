@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Bootstrap Business Template">
+    <meta name="author" content="The Develovers">
+    <!-- CSS -->
+    <link href="~/Content/InfoDemo/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/InfoDemo/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/InfoDemo/css/main.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/InfoDemo/css/my-custom-styles.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/InfoDemo/css/login-register.css" rel="stylesheet" />
+    <!-- IE 9 Fallback-->
+    <!--[if IE 9]>
+        <link href="assets/css/ie.css" rel="stylesheet">
+    <![endif]-->
+    <!-- GOOGLE FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,400italic,700,400,300' rel='stylesheet' type='text/css'>
+    <!-- FAVICONS -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/InfoDemo/ico/repute144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/InfoDemo/ico/repute114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/InfoDemo/ico/repute72x72.png">
+    <link rel="apple-touch-icon-precomposed" href="~/assets/ico/repute57x57.png">
+    <link rel="shortcut icon" href="~~/Content/InfoDemo/ico/favicon.png">
+    @*JavaScripts*@
+    <script src="~/Content/InfoDemo/js/jquery-2.1.1.min.js"></script>
+    <script src="~/Content/InfoDemo/js/bootstrap.min.js"></script>
+    <script src="~/Content/InfoDemo/js/plugins/slick/slick.min.js"></script>
+    <script src="~/Content/InfoDemo/js/plugins/isotope/isotope.pkgd.js"></script>
+    <script src="~/Content/InfoDemo/js/plugins/stellar/jquery.stellar.min.js"></script>
+    <script src="~/Content/InfoDemo/js/repute-scripts.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        @*导航栏*@
+        <nav class="navbar navbar-default " role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a href="@Url.Action("Login", "AdminLogin")" class="navbar-brand navbar-logo">
+                        <img src="~/Content/InfoDemo/img/logo/repute-logo-nav.png" alt="Repute Lite - Free Bootstrap Business Template">
+                    </a>
+                </div>
+                <!-- MAIN NAVIGATION -->
+                <div id="main-nav" class="navbar-collapse collapse navbar-mega-menu">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown active">
+                            <a href="@Url.Action("Info_Index", "Info")">主页</a>
+
+                        </li>
+                        <li class="dropdown ">
+                            <a href="@Url.Action("VideoIndex", "Video")">视频</a>
+
+                        </li>
+                        <li class="dropdown ">
+                            <a href="@Url.Action("InfoContent", "Info")">资讯</a>
+
+                        </li>
+
+                        <li class="dropdown ">
+                            <a href="@Url.Action("商城首页", "Goods_Index", "Goods")" class="dropdown-toggle" data-toggle="dropdown">商城<i class="fa fa-angle-down"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("首页", "Goods_Index", "Goods")</li>
+                                
+                            </ul>
+                        </li>
+                        
+                        @Html.Partial("~/Views/Account/Userinfo.cshtml")
+
+                    </ul>
+
+
+                </div>
+                <!-- END MAIN NAVIGATION -->
+            </div>
+        </nav>
+        <div class="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        @RenderBody()
+
+                    </div>
+                    <div class="col-md-3">
+                        <!-- SIDEBAR -->
+                        <!-- search form -->
+                        @*<div class="widget">
+                            <form action="#" class="form-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="enter search term">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button">搜索</button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>*@
+                        <!-- end search form -->
+                        <!-- categories -->
+                        @*@Html.Partial("~/Views/InfoClass/InfoMenu.cshtml")*@
+                        @{ Html.RenderAction("InfoMenu", "InfoClass"); }
+                        <!-- end categories -->
+                        <!-- tabbed content -->
+                        <div class="widget">
+                            <div class="tabpanel">
+                                <!-- nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#content-popular" aria-controls="content-popular" role="tab" data-toggle="tab">点赞排行榜</a></li>
+                                    <li role="presentation"><a href="#content-recents" aria-controls="content-recents" role="tab" data-toggle="tab">最新资讯</a></li>
+                                    
+                                </ul>
+                                <!-- end nav tabs -->
+                                <!-- tab panes -->
+                                <div class="tab-content">
+                                    <div id="content-popular" class="tab-pane fade in active" role="tabpanel">
+                                        <ul class="list-unstyled blogposts popular">
+                                            @foreach (var item in ViewBag.InfoSupport1)
+                                            {
+                                                <li>
+                                                    <h4 class="post-title"><a href="#">@item.Info_Title</a></h4>
+                                                    <span class="text-muted">点赞数：@item.InfoSupportNum</span>
+                                                </li>
+                                            }
+
+                                            @*<li>
+                                                <h4 class="post-title"><a href="#">Seamlessly Repurpose Equity Invested Intellectual Capital</a></h4>
+                                                <span class="text-muted">Nov 23, 2014 | by George</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="post-title"><a href="#">Efficiently Aggregate Multidisciplinary Markets With Professional Functionalities</a></h4>
+                                                <span class="text-muted">Nov 9, 2014 | by Jane</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="post-title"><a href="#">Collaboratively Actualize Revolutionary Total Linkage</a></h4>
+                                                <span class="text-muted">Nov 9, 2014 | by Smith</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="post-title"><a href="#">Credibly Disintermediate Client-centered Applications</a></h4>
+                                                <span class="text-muted">Nov 9, 2014 | by Barbara</span>
+                                            </li>*@
+                                        </ul>
+                                    </div>
+                                    <div id="content-recents" class="tab-pane fade" role="tabpanel">
+                                        <ul class="list-unstyled blogposts latest">
+                                            @foreach (var it in ViewBag.infolatest)
+                                            {
+                                                <li>
+                                                    <h4 class="post-title"><a href="#">@it.Info_Title</a></h4>
+                                                    <span class="text-muted">@it.Info_Time</span>
+                                                </li>
+                                            }
+
+                                           
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                                <!-- end tab panes -->
+                            </div>
+                        </div>
+                        <!-- end tabbed content -->
+                        <!-- tags -->
+                        <div class="widget">
+                            <h4 class="widget-title">TAGS</h4>
+                            <ul class="list-inline tag-list">
+                                <li><a href="#">story</a></li>
+                                <li><a href="#">inspiration</a></li>
+                                <li><a href="#">creative</a></li>
+                                <li><a href="#">e-commerce</a></li>
+                                <li><a href="#">statistic data</a></li>
+                                <li><a href="#">business</a></li>
+                                <li><a href="#">development</a></li>
+                                <li><a href="#">startup ideas</a></li>
+                                <li><a href="#">enterprise</a></li>
+                            </ul>
+                        </div>
+                        <!-- end tags -->
+                        <!-- text widget -->
+                        @*<div class="widget">
+                                <h4 class="widget-title">TEXT WIDGET</h4>
+                                <p>Conveniently develop parallel technologies via user-centric benefits. Globally deploy turnkey technologies vis-a-vis excellent partnerships. Completely aggregate one-to-one human capital with principle-centered initiatives. Seamlessly enable web-enabled.</p>
+                                <p> Appropriately foster ethical architectures via functional alignments. Holisticly unleash enabled information via customized value. Collaboratively syndicate corporate benefits without process-centric communities.</p>
+                            </div>*@
+                        <!-- end text widget -->
+                        <!-- END SIDEBAR -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*底部*@
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- COLUMN 1 -->
+                        <h3 class="sr-only">ABOUT US</h3>
+                        <img src="~/Content/InfoDemo/img/logo/repute-logo-light.png" class="logo" alt="Repute">
+                        <p>云端科技，与你分享科技生活的点滴</p>
+                        <br>
+                        @*<address class="margin-bottom-30px">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        1234 North Main Street
+                                        <br /> New York, NY 222222
+                                    </li>
+                                    <li>Phone: (1800) 765 - 4321</li>
+                                    <li>Email: email@yourdomain.com</li>
+                                </ul>
+                            </address>*@
+                        <!-- END COLUMN 1 -->
+                    </div>
+                    <div class="col-md-4">
+                        <!-- COLUMN 2 -->
+                        <h3 class="footer-heading">友情链接</h3>
+                        <div class="row margin-bottom-30px">
+                            <div class="col-xs-6">
+                                <ul class="list-unstyled footer-nav">
+                                    <li><a href="#">zealer</a></li>
+                                    <li><a href="#">科技美学</a></li>
+                                    <li><a href="#">数字尾巴</a></li>
+                                    <li><a href="#">Career</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-6">
+                                <ul class="list-unstyled footer-nav">
+                                    <li><a href="#">Press Kit</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Terms</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- END COLUMN 2 -->
+                    </div>
+                    <div class="col-md-4">
+                        <!-- COLUMN 3 -->
+
+                        <div class="social-connect">
+                            <h3 class="footer-heading">联系方式</h3>
+                            <ul class="list-inline social-icons">
+                                <li><a href="#" class="facebook-bg"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#" class="twitter-bg"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" class="googleplus-bg"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#" class="rss-bg"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- END COLUMN 3 -->
+                    </div>
+                </div>
+            </div>
+
+
+        </footer>
+
+    </div>
+
+</body>
+</html>

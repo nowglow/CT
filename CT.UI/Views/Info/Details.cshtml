@@ -1,0 +1,77 @@
+﻿@model CT.UI.Models.InfoModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">后台管理</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="#">新闻资讯</a></li>
+            <li><i class="fa fa-table"></i>新闻资讯管理</li>
+            <li><i class="fa fa-th-list"></i>资讯详情</li>
+        </ol>
+    </div>
+</div>
+<section class="panel">
+    <div>
+
+        <hr />
+        <p>
+            @*@Html.ActionLink("修改", "Edit", new { id = Model.Info_ID }) |*@
+            @Html.ActionLink("返回主页", "Index")
+        </p>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                标题
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Info_Title)
+            </dd>
+            <dt>
+                时间
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Info_Time)
+            </dd>
+            <dt>
+                一级分类
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Info_Class)
+            </dd>
+            <dt>
+                二级分类
+            </dt>
+            <dd>
+                @if (Model.ICC_Name != null)
+                {
+                    @Html.DisplayFor(model => model.ICC_Name)
+                }
+                else
+                {
+                    @Html.Display("无")
+                }
+            </dd>
+
+            <dt>
+                封面
+            </dt>
+            <dd>
+                <img src="@Model.Info_Img" style="height:400px;width:650px" />
+            </dd>
+
+            <dt>
+                内容
+            </dt>
+            <dd>
+                @Html.Raw(Model.Info_Content)
+            </dd>
+        </dl>
+    </div>
+    <br />
+    <br />
+</section>

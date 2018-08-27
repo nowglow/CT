@@ -1,0 +1,1833 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_ID" />
+          </Key>
+          <Property Name="Admin_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Admin_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Admin_Password" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Border">
+          <Key>
+            <PropertyRef Name="Border_ID" />
+          </Key>
+          <Property Name="Border_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type_ID" Type="int" />
+          <Property Name="Border_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="Collection_ID" />
+          </Key>
+          <Property Name="Collection_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+          <Property Name="Goods_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GetGoods">
+          <Key>
+            <PropertyRef Name="GetGoods_ID" />
+          </Key>
+          <Property Name="GetGoods_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+          <Property Name="GetGoods_Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="GetGoods_Address" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="GetGoods_Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="Goods_ID" />
+          </Key>
+          <Property Name="Goods_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type_ID" Type="int" Nullable="false" />
+          <Property Name="Border_ID" Type="int" Nullable="false" />
+          <Property Name="Goods_Name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="Goods_Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Goods_Img" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Goods_Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoodsComment">
+          <Key>
+            <PropertyRef Name="GoodsComment_ID" />
+          </Key>
+          <Property Name="GoodsComment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Goods_ID" Type="int" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+          <Property Name="GoodsComment_Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GoodsComment_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoodsSave">
+          <Key>
+            <PropertyRef Name="GoodsSave_ID" />
+          </Key>
+          <Property Name="GoodsSave_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Goods_ID" Type="int" Nullable="false" />
+          <Property Name="GoodsSave_Num" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoodsType">
+          <Key>
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ICC">
+          <Key>
+            <PropertyRef Name="ICC_ID" />
+          </Key>
+          <Property Name="ICC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ICC_Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="InfoClass_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="Info_ID" />
+          </Key>
+          <Property Name="Info_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Info_Title" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Info_Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Info_Img" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Info_Time" Type="datetime" Nullable="false" />
+          <Property Name="InfoClass_ID" Type="int" Nullable="false" />
+          <Property Name="ICC_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="InfoClass">
+          <Key>
+            <PropertyRef Name="InfoClass_ID" />
+          </Key>
+          <Property Name="InfoClass_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Info_Class" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InfoComment">
+          <Key>
+            <PropertyRef Name="IC_ID" />
+          </Key>
+          <Property Name="IC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Info_ID" Type="int" Nullable="false" />
+          <Property Name="IC_Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IC_Time" Type="datetime" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InfoCommentAgainst">
+          <Key>
+            <PropertyRef Name="ICA_ID" />
+          </Key>
+          <Property Name="ICA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Info_ID" Type="int" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InfoCommentBack">
+          <Key>
+            <PropertyRef Name="ICB_ID" />
+          </Key>
+          <Property Name="ICB_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ICB_Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ICB_Time" Type="datetime" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+          <Property Name="IC_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="InfoCommentSupport">
+          <Key>
+            <PropertyRef Name="ICS_ID" />
+          </Key>
+          <Property Name="ICS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Info_ID" Type="int" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+          <Property Name="Goods_ID" Type="int" Nullable="false" />
+          <Property Name="Order_GoodsNum" Type="int" Nullable="false" />
+          <Property Name="Order_Time" Type="datetime" Nullable="false" />
+          <Property Name="Goods_Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserInfo_ID" />
+          </Key>
+          <Property Name="UserInfo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserInfo_Img" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="UserInfo_Name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserInfo_Password" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="UserInfo_Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserInfo_Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="Video_ID" />
+          </Key>
+          <Property Name="Video_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Video_Title" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Video_Url" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Video_Img" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="VideoClass_ID" Type="int" Nullable="false" />
+          <Property Name="Video_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoClass">
+          <Key>
+            <PropertyRef Name="VideoClass_ID" />
+          </Key>
+          <Property Name="VideoClass_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Video_Class" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoComment">
+          <Key>
+            <PropertyRef Name="VC_ID" />
+          </Key>
+          <Property Name="VC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Video_ID" Type="int" Nullable="false" />
+          <Property Name="VC_Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VC_Time" Type="datetime" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoCommentAgainst">
+          <Key>
+            <PropertyRef Name="VCA_ID" />
+          </Key>
+          <Property Name="VCA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Video_ID" Type="int" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoCommentBack">
+          <Key>
+            <PropertyRef Name="VCB_ID" />
+          </Key>
+          <Property Name="VCB_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VCB_Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VCB_Time" Type="datetime" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+          <Property Name="VC_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VideoCommentSupport">
+          <Key>
+            <PropertyRef Name="VCS_ID" />
+          </Key>
+          <Property Name="VCS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Video_ID" Type="int" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Border_GoodsType">
+          <End Role="GoodsType" Type="Self.GoodsType" Multiplicity="0..1" />
+          <End Role="Border" Type="Self.Border" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsType">
+              <PropertyRef Name="Type_ID" />
+            </Principal>
+            <Dependent Role="Border">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Goods_ID" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="Goods_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GetGoods_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="GetGoods" Type="Self.GetGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="GetGoods">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_Border">
+          <End Role="Border" Type="Self.Border" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Border">
+              <PropertyRef Name="Border_ID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="Border_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_GoodsType">
+          <End Role="GoodsType" Type="Self.GoodsType" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsType">
+              <PropertyRef Name="Type_ID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsComment_GoodsComment">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="GoodsComment" Type="Self.GoodsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Goods_ID" />
+            </Principal>
+            <Dependent Role="GoodsComment">
+              <PropertyRef Name="Goods_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsComment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="GoodsComment" Type="Self.GoodsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="GoodsComment">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsSave_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="GoodsSave" Type="Self.GoodsSave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Goods_ID" />
+            </Principal>
+            <Dependent Role="GoodsSave">
+              <PropertyRef Name="Goods_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ICC_InfoClass">
+          <End Role="InfoClass" Type="Self.InfoClass" Multiplicity="0..1" />
+          <End Role="ICC" Type="Self.ICC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoClass">
+              <PropertyRef Name="InfoClass_ID" />
+            </Principal>
+            <Dependent Role="ICC">
+              <PropertyRef Name="InfoClass_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_ICC">
+          <End Role="ICC" Type="Self.ICC" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ICC">
+              <PropertyRef Name="ICC_ID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="ICC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_InfoClass">
+          <End Role="InfoClass" Type="Self.InfoClass" Multiplicity="1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoClass">
+              <PropertyRef Name="InfoClass_ID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="InfoClass_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoComment_Info">
+          <End Role="Info" Type="Self.Info" Multiplicity="1" />
+          <End Role="InfoComment" Type="Self.InfoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="Info_ID" />
+            </Principal>
+            <Dependent Role="InfoComment">
+              <PropertyRef Name="Info_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoComment_InfoComment">
+          <End Role="InfoComment" Type="Self.InfoComment" Multiplicity="1" />
+          <End Role="InfoComment1" Type="Self.InfoComment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="InfoComment">
+              <PropertyRef Name="IC_ID" />
+            </Principal>
+            <Dependent Role="InfoComment1">
+              <PropertyRef Name="IC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoComment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="InfoComment" Type="Self.InfoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="InfoComment">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentAgainst_Info">
+          <End Role="Info" Type="Self.Info" Multiplicity="1" />
+          <End Role="InfoCommentAgainst" Type="Self.InfoCommentAgainst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="Info_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentAgainst">
+              <PropertyRef Name="Info_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentAgainst_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="InfoCommentAgainst" Type="Self.InfoCommentAgainst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentAgainst">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentBack_InfoComment">
+          <End Role="InfoComment" Type="Self.InfoComment" Multiplicity="0..1" />
+          <End Role="InfoCommentBack" Type="Self.InfoCommentBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoComment">
+              <PropertyRef Name="IC_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentBack">
+              <PropertyRef Name="IC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentBack_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="InfoCommentBack" Type="Self.InfoCommentBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentBack">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentSupport_Info1">
+          <End Role="Info" Type="Self.Info" Multiplicity="1" />
+          <End Role="InfoCommentSupport" Type="Self.InfoCommentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="Info_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentSupport">
+              <PropertyRef Name="Info_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentSupport_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="InfoCommentSupport" Type="Self.InfoCommentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentSupport">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Goods_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Goods_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Video_Video">
+          <End Role="VideoClass" Type="Self.VideoClass" Multiplicity="1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoClass">
+              <PropertyRef Name="VideoClass_ID" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="VideoClass_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoComment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="VideoComment">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoComment_Video">
+          <End Role="Video" Type="Self.Video" Multiplicity="1" />
+          <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Video">
+              <PropertyRef Name="Video_ID" />
+            </Principal>
+            <Dependent Role="VideoComment">
+              <PropertyRef Name="Video_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentAgainst_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="VideoCommentAgainst" Type="Self.VideoCommentAgainst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentAgainst">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentAgainst_Video">
+          <End Role="Video" Type="Self.Video" Multiplicity="1" />
+          <End Role="VideoCommentAgainst" Type="Self.VideoCommentAgainst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Video">
+              <PropertyRef Name="Video_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentAgainst">
+              <PropertyRef Name="Video_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentBack_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="VideoCommentBack" Type="Self.VideoCommentBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentBack">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentBack_VideoComment">
+          <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="1" />
+          <End Role="VideoCommentBack" Type="Self.VideoCommentBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoComment">
+              <PropertyRef Name="VC_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentBack">
+              <PropertyRef Name="VC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentSupport_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="VideoCommentSupport" Type="Self.VideoCommentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentSupport">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentSupport_Video">
+          <End Role="Video" Type="Self.Video" Multiplicity="1" />
+          <End Role="VideoCommentSupport" Type="Self.VideoCommentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Video">
+              <PropertyRef Name="Video_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentSupport">
+              <PropertyRef Name="Video_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CTModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Border" EntityType="Self.Border" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Collection" EntityType="Self.Collection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GetGoods" EntityType="Self.GetGoods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsComment" EntityType="Self.GoodsComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsSave" EntityType="Self.GoodsSave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsType" EntityType="Self.GoodsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ICC" EntityType="Self.ICC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Info" EntityType="Self.Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoClass" EntityType="Self.InfoClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoComment" EntityType="Self.InfoComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoCommentAgainst" EntityType="Self.InfoCommentAgainst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoCommentBack" EntityType="Self.InfoCommentBack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoCommentSupport" EntityType="Self.InfoCommentSupport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoClass" EntityType="Self.VideoClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoComment" EntityType="Self.VideoComment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCommentAgainst" EntityType="Self.VideoCommentAgainst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCommentBack" EntityType="Self.VideoCommentBack" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCommentSupport" EntityType="Self.VideoCommentSupport" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Border_GoodsType" Association="Self.FK_Border_GoodsType">
+            <End Role="GoodsType" EntitySet="GoodsType" />
+            <End Role="Border" EntitySet="Border" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_Goods" Association="Self.FK_Collection_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_UserInfo" Association="Self.FK_Collection_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GetGoods_UserInfo" Association="Self.FK_GetGoods_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="GetGoods" EntitySet="GetGoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_Border" Association="Self.FK_Goods_Border">
+            <End Role="Border" EntitySet="Border" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_GoodsType" Association="Self.FK_Goods_GoodsType">
+            <End Role="GoodsType" EntitySet="GoodsType" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsComment_GoodsComment" Association="Self.FK_GoodsComment_GoodsComment">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="GoodsComment" EntitySet="GoodsComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsComment_UserInfo" Association="Self.FK_GoodsComment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="GoodsComment" EntitySet="GoodsComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsSave_Goods" Association="Self.FK_GoodsSave_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="GoodsSave" EntitySet="GoodsSave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ICC_InfoClass" Association="Self.FK_ICC_InfoClass">
+            <End Role="InfoClass" EntitySet="InfoClass" />
+            <End Role="ICC" EntitySet="ICC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_ICC" Association="Self.FK_Info_ICC">
+            <End Role="ICC" EntitySet="ICC" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_InfoClass" Association="Self.FK_Info_InfoClass">
+            <End Role="InfoClass" EntitySet="InfoClass" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoComment_Info" Association="Self.FK_InfoComment_Info">
+            <End Role="Info" EntitySet="Info" />
+            <End Role="InfoComment" EntitySet="InfoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoComment_InfoComment" Association="Self.FK_InfoComment_InfoComment">
+            <End Role="InfoComment" EntitySet="InfoComment" />
+            <End Role="InfoComment1" EntitySet="InfoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoComment_UserInfo" Association="Self.FK_InfoComment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="InfoComment" EntitySet="InfoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentAgainst_Info" Association="Self.FK_InfoCommentAgainst_Info">
+            <End Role="Info" EntitySet="Info" />
+            <End Role="InfoCommentAgainst" EntitySet="InfoCommentAgainst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentAgainst_UserInfo" Association="Self.FK_InfoCommentAgainst_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="InfoCommentAgainst" EntitySet="InfoCommentAgainst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentBack_InfoComment" Association="Self.FK_InfoCommentBack_InfoComment">
+            <End Role="InfoComment" EntitySet="InfoComment" />
+            <End Role="InfoCommentBack" EntitySet="InfoCommentBack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentBack_UserInfo" Association="Self.FK_InfoCommentBack_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="InfoCommentBack" EntitySet="InfoCommentBack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentSupport_Info1" Association="Self.FK_InfoCommentSupport_Info1">
+            <End Role="Info" EntitySet="Info" />
+            <End Role="InfoCommentSupport" EntitySet="InfoCommentSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentSupport_UserInfo" Association="Self.FK_InfoCommentSupport_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="InfoCommentSupport" EntitySet="InfoCommentSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Goods" Association="Self.FK_Order_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_UserInfo" Association="Self.FK_Order_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Video_Video" Association="Self.FK_Video_Video">
+            <End Role="VideoClass" EntitySet="VideoClass" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoComment_UserInfo" Association="Self.FK_VideoComment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="VideoComment" EntitySet="VideoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoComment_Video" Association="Self.FK_VideoComment_Video">
+            <End Role="Video" EntitySet="Video" />
+            <End Role="VideoComment" EntitySet="VideoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentAgainst_UserInfo" Association="Self.FK_VideoCommentAgainst_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="VideoCommentAgainst" EntitySet="VideoCommentAgainst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentAgainst_Video" Association="Self.FK_VideoCommentAgainst_Video">
+            <End Role="Video" EntitySet="Video" />
+            <End Role="VideoCommentAgainst" EntitySet="VideoCommentAgainst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentBack_UserInfo" Association="Self.FK_VideoCommentBack_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="VideoCommentBack" EntitySet="VideoCommentBack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentBack_VideoComment" Association="Self.FK_VideoCommentBack_VideoComment">
+            <End Role="VideoComment" EntitySet="VideoComment" />
+            <End Role="VideoCommentBack" EntitySet="VideoCommentBack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentSupport_UserInfo" Association="Self.FK_VideoCommentSupport_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="VideoCommentSupport" EntitySet="VideoCommentSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentSupport_Video" Association="Self.FK_VideoCommentSupport_Video">
+            <End Role="Video" EntitySet="Video" />
+            <End Role="VideoCommentSupport" EntitySet="VideoCommentSupport" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Admin_ID" />
+          </Key>
+          <Property Name="Admin_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Admin_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Admin_Password" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Border">
+          <Key>
+            <PropertyRef Name="Border_ID" />
+          </Key>
+          <Property Name="Border_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type_ID" Type="Int32" />
+          <Property Name="Border_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GoodsType" Relationship="Self.FK_Border_GoodsType" FromRole="Border" ToRole="GoodsType" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_Border" FromRole="Border" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="Collection_ID" />
+          </Key>
+          <Property Name="Collection_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <Property Name="Goods_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Collection_Goods" FromRole="Collection" ToRole="Goods" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Collection_UserInfo" FromRole="Collection" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="GetGoods">
+          <Key>
+            <PropertyRef Name="GetGoods_ID" />
+          </Key>
+          <Property Name="GetGoods_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <Property Name="GetGoods_Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GetGoods_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GetGoods_Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_GetGoods_UserInfo" FromRole="GetGoods" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="Goods_ID" />
+          </Key>
+          <Property Name="Goods_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type_ID" Type="Int32" Nullable="false" />
+          <Property Name="Border_ID" Type="Int32" Nullable="false" />
+          <Property Name="Goods_Name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Goods_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Goods_Img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Goods_Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Border" Relationship="Self.FK_Goods_Border" FromRole="Goods" ToRole="Border" />
+          <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_Goods" FromRole="Goods" ToRole="Collection" />
+          <NavigationProperty Name="GoodsType" Relationship="Self.FK_Goods_GoodsType" FromRole="Goods" ToRole="GoodsType" />
+          <NavigationProperty Name="GoodsComment" Relationship="Self.FK_GoodsComment_GoodsComment" FromRole="Goods" ToRole="GoodsComment" />
+          <NavigationProperty Name="GoodsSave" Relationship="Self.FK_GoodsSave_Goods" FromRole="Goods" ToRole="GoodsSave" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Goods" FromRole="Goods" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="GoodsComment">
+          <Key>
+            <PropertyRef Name="GoodsComment_ID" />
+          </Key>
+          <Property Name="GoodsComment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Goods_ID" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsComment_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoodsComment_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_GoodsComment_GoodsComment" FromRole="GoodsComment" ToRole="Goods" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_GoodsComment_UserInfo" FromRole="GoodsComment" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="GoodsSave">
+          <Key>
+            <PropertyRef Name="GoodsSave_ID" />
+          </Key>
+          <Property Name="GoodsSave_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Goods_ID" Type="Int32" Nullable="false" />
+          <Property Name="GoodsSave_Num" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_GoodsSave_Goods" FromRole="GoodsSave" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="GoodsType">
+          <Key>
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Border" Relationship="Self.FK_Border_GoodsType" FromRole="GoodsType" ToRole="Border" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_GoodsType" FromRole="GoodsType" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="ICC">
+          <Key>
+            <PropertyRef Name="ICC_ID" />
+          </Key>
+          <Property Name="ICC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ICC_Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InfoClass_ID" Type="Int32" />
+          <NavigationProperty Name="InfoClass" Relationship="Self.FK_ICC_InfoClass" FromRole="ICC" ToRole="InfoClass" />
+          <NavigationProperty Name="Info" Relationship="Self.FK_Info_ICC" FromRole="ICC" ToRole="Info" />
+        </EntityType>
+        <EntityType Name="Info">
+          <Key>
+            <PropertyRef Name="Info_ID" />
+          </Key>
+          <Property Name="Info_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Info_Title" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Info_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Info_Img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Info_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InfoClass_ID" Type="Int32" Nullable="false" />
+          <Property Name="ICC_ID" Type="Int32" />
+          <NavigationProperty Name="ICC" Relationship="Self.FK_Info_ICC" FromRole="Info" ToRole="ICC" />
+          <NavigationProperty Name="InfoClass" Relationship="Self.FK_Info_InfoClass" FromRole="Info" ToRole="InfoClass" />
+          <NavigationProperty Name="InfoComment" Relationship="Self.FK_InfoComment_Info" FromRole="Info" ToRole="InfoComment" />
+          <NavigationProperty Name="InfoCommentAgainst" Relationship="Self.FK_InfoCommentAgainst_Info" FromRole="Info" ToRole="InfoCommentAgainst" />
+          <NavigationProperty Name="InfoCommentSupport" Relationship="Self.FK_InfoCommentSupport_Info1" FromRole="Info" ToRole="InfoCommentSupport" />
+        </EntityType>
+        <EntityType Name="InfoClass">
+          <Key>
+            <PropertyRef Name="InfoClass_ID" />
+          </Key>
+          <Property Name="InfoClass_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Info_Class" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ICC" Relationship="Self.FK_ICC_InfoClass" FromRole="InfoClass" ToRole="ICC" />
+          <NavigationProperty Name="Info" Relationship="Self.FK_Info_InfoClass" FromRole="InfoClass" ToRole="Info" />
+        </EntityType>
+        <EntityType Name="InfoComment">
+          <Key>
+            <PropertyRef Name="IC_ID" />
+          </Key>
+          <Property Name="IC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Info_ID" Type="Int32" Nullable="false" />
+          <Property Name="IC_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IC_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Info" Relationship="Self.FK_InfoComment_Info" FromRole="InfoComment" ToRole="Info" />
+          <NavigationProperty Name="InfoComment1" Relationship="Self.FK_InfoComment_InfoComment" FromRole="InfoComment" ToRole="InfoComment1" />
+          <NavigationProperty Name="InfoComment2" Relationship="Self.FK_InfoComment_InfoComment" FromRole="InfoComment1" ToRole="InfoComment" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_InfoComment_UserInfo" FromRole="InfoComment" ToRole="UserInfo" />
+          <NavigationProperty Name="InfoCommentBack" Relationship="Self.FK_InfoCommentBack_InfoComment" FromRole="InfoComment" ToRole="InfoCommentBack" />
+        </EntityType>
+        <EntityType Name="InfoCommentAgainst">
+          <Key>
+            <PropertyRef Name="ICA_ID" />
+          </Key>
+          <Property Name="ICA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Info_ID" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Info" Relationship="Self.FK_InfoCommentAgainst_Info" FromRole="InfoCommentAgainst" ToRole="Info" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_InfoCommentAgainst_UserInfo" FromRole="InfoCommentAgainst" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="InfoCommentBack">
+          <Key>
+            <PropertyRef Name="ICB_ID" />
+          </Key>
+          <Property Name="ICB_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ICB_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ICB_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <Property Name="IC_ID" Type="Int32" />
+          <NavigationProperty Name="InfoComment" Relationship="Self.FK_InfoCommentBack_InfoComment" FromRole="InfoCommentBack" ToRole="InfoComment" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_InfoCommentBack_UserInfo" FromRole="InfoCommentBack" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="InfoCommentSupport">
+          <Key>
+            <PropertyRef Name="ICS_ID" />
+          </Key>
+          <Property Name="ICS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Info_ID" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Info" Relationship="Self.FK_InfoCommentSupport_Info1" FromRole="InfoCommentSupport" ToRole="Info" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_InfoCommentSupport_UserInfo" FromRole="InfoCommentSupport" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <Property Name="Goods_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_GoodsNum" Type="Int32" Nullable="false" />
+          <Property Name="Order_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Goods_Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Order_Goods" FromRole="Order" ToRole="Goods" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_Order_UserInfo" FromRole="Order" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="UserInfo_ID" />
+          </Key>
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserInfo_Img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserInfo_Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="UserInfo_Password" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UserInfo_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserInfo_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Collection" Relationship="Self.FK_Collection_UserInfo" FromRole="UserInfo" ToRole="Collection" />
+          <NavigationProperty Name="GetGoods" Relationship="Self.FK_GetGoods_UserInfo" FromRole="UserInfo" ToRole="GetGoods" />
+          <NavigationProperty Name="GoodsComment" Relationship="Self.FK_GoodsComment_UserInfo" FromRole="UserInfo" ToRole="GoodsComment" />
+          <NavigationProperty Name="InfoComment" Relationship="Self.FK_InfoComment_UserInfo" FromRole="UserInfo" ToRole="InfoComment" />
+          <NavigationProperty Name="InfoCommentAgainst" Relationship="Self.FK_InfoCommentAgainst_UserInfo" FromRole="UserInfo" ToRole="InfoCommentAgainst" />
+          <NavigationProperty Name="InfoCommentBack" Relationship="Self.FK_InfoCommentBack_UserInfo" FromRole="UserInfo" ToRole="InfoCommentBack" />
+          <NavigationProperty Name="InfoCommentSupport" Relationship="Self.FK_InfoCommentSupport_UserInfo" FromRole="UserInfo" ToRole="InfoCommentSupport" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_UserInfo" FromRole="UserInfo" ToRole="Order" />
+          <NavigationProperty Name="VideoComment" Relationship="Self.FK_VideoComment_UserInfo" FromRole="UserInfo" ToRole="VideoComment" />
+          <NavigationProperty Name="VideoCommentAgainst" Relationship="Self.FK_VideoCommentAgainst_UserInfo" FromRole="UserInfo" ToRole="VideoCommentAgainst" />
+          <NavigationProperty Name="VideoCommentBack" Relationship="Self.FK_VideoCommentBack_UserInfo" FromRole="UserInfo" ToRole="VideoCommentBack" />
+          <NavigationProperty Name="VideoCommentSupport" Relationship="Self.FK_VideoCommentSupport_UserInfo" FromRole="UserInfo" ToRole="VideoCommentSupport" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="Video_ID" />
+          </Key>
+          <Property Name="Video_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Video_Title" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Video_Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Video_Img" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VideoClass_ID" Type="Int32" Nullable="false" />
+          <Property Name="Video_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="VideoClass" Relationship="Self.FK_Video_Video" FromRole="Video" ToRole="VideoClass" />
+          <NavigationProperty Name="VideoComment" Relationship="Self.FK_VideoComment_Video" FromRole="Video" ToRole="VideoComment" />
+          <NavigationProperty Name="VideoCommentAgainst" Relationship="Self.FK_VideoCommentAgainst_Video" FromRole="Video" ToRole="VideoCommentAgainst" />
+          <NavigationProperty Name="VideoCommentSupport" Relationship="Self.FK_VideoCommentSupport_Video" FromRole="Video" ToRole="VideoCommentSupport" />
+        </EntityType>
+        <EntityType Name="VideoClass">
+          <Key>
+            <PropertyRef Name="VideoClass_ID" />
+          </Key>
+          <Property Name="VideoClass_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Video_Class" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Video" Relationship="Self.FK_Video_Video" FromRole="VideoClass" ToRole="Video" />
+        </EntityType>
+        <EntityType Name="VideoComment">
+          <Key>
+            <PropertyRef Name="VC_ID" />
+          </Key>
+          <Property Name="VC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Video_ID" Type="Int32" Nullable="false" />
+          <Property Name="VC_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VC_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_VideoComment_UserInfo" FromRole="VideoComment" ToRole="UserInfo" />
+          <NavigationProperty Name="Video" Relationship="Self.FK_VideoComment_Video" FromRole="VideoComment" ToRole="Video" />
+          <NavigationProperty Name="VideoCommentBack" Relationship="Self.FK_VideoCommentBack_VideoComment" FromRole="VideoComment" ToRole="VideoCommentBack" />
+        </EntityType>
+        <EntityType Name="VideoCommentAgainst">
+          <Key>
+            <PropertyRef Name="VCA_ID" />
+          </Key>
+          <Property Name="VCA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Video_ID" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_VideoCommentAgainst_UserInfo" FromRole="VideoCommentAgainst" ToRole="UserInfo" />
+          <NavigationProperty Name="Video" Relationship="Self.FK_VideoCommentAgainst_Video" FromRole="VideoCommentAgainst" ToRole="Video" />
+        </EntityType>
+        <EntityType Name="VideoCommentBack">
+          <Key>
+            <PropertyRef Name="VCB_ID" />
+          </Key>
+          <Property Name="VCB_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VCB_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VCB_Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <Property Name="VC_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_VideoCommentBack_UserInfo" FromRole="VideoCommentBack" ToRole="UserInfo" />
+          <NavigationProperty Name="VideoComment" Relationship="Self.FK_VideoCommentBack_VideoComment" FromRole="VideoCommentBack" ToRole="VideoComment" />
+        </EntityType>
+        <EntityType Name="VideoCommentSupport">
+          <Key>
+            <PropertyRef Name="VCS_ID" />
+          </Key>
+          <Property Name="VCS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Video_ID" Type="Int32" Nullable="false" />
+          <Property Name="UserInfo_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserInfo" Relationship="Self.FK_VideoCommentSupport_UserInfo" FromRole="VideoCommentSupport" ToRole="UserInfo" />
+          <NavigationProperty Name="Video" Relationship="Self.FK_VideoCommentSupport_Video" FromRole="VideoCommentSupport" ToRole="Video" />
+        </EntityType>
+        <Association Name="FK_Border_GoodsType">
+          <End Role="GoodsType" Type="Self.GoodsType" Multiplicity="0..1" />
+          <End Role="Border" Type="Self.Border" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsType">
+              <PropertyRef Name="Type_ID" />
+            </Principal>
+            <Dependent Role="Border">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_Border">
+          <End Role="Border" Type="Self.Border" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Border">
+              <PropertyRef Name="Border_ID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="Border_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Goods_ID" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="Goods_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="Collection" Type="Self.Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GetGoods_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="GetGoods" Type="Self.GetGoods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="GetGoods">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_GoodsType">
+          <End Role="GoodsType" Type="Self.GoodsType" Multiplicity="1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoodsType">
+              <PropertyRef Name="Type_ID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsComment_GoodsComment">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="GoodsComment" Type="Self.GoodsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Goods_ID" />
+            </Principal>
+            <Dependent Role="GoodsComment">
+              <PropertyRef Name="Goods_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsSave_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="GoodsSave" Type="Self.GoodsSave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Goods_ID" />
+            </Principal>
+            <Dependent Role="GoodsSave">
+              <PropertyRef Name="Goods_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="Goods_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Goods_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GoodsComment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="GoodsComment" Type="Self.GoodsComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="GoodsComment">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ICC_InfoClass">
+          <End Role="InfoClass" Type="Self.InfoClass" Multiplicity="0..1" />
+          <End Role="ICC" Type="Self.ICC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoClass">
+              <PropertyRef Name="InfoClass_ID" />
+            </Principal>
+            <Dependent Role="ICC">
+              <PropertyRef Name="InfoClass_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_ICC">
+          <End Role="ICC" Type="Self.ICC" Multiplicity="0..1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ICC">
+              <PropertyRef Name="ICC_ID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="ICC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Info_InfoClass">
+          <End Role="InfoClass" Type="Self.InfoClass" Multiplicity="1" />
+          <End Role="Info" Type="Self.Info" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoClass">
+              <PropertyRef Name="InfoClass_ID" />
+            </Principal>
+            <Dependent Role="Info">
+              <PropertyRef Name="InfoClass_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoComment_Info">
+          <End Role="Info" Type="Self.Info" Multiplicity="1" />
+          <End Role="InfoComment" Type="Self.InfoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="Info_ID" />
+            </Principal>
+            <Dependent Role="InfoComment">
+              <PropertyRef Name="Info_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentAgainst_Info">
+          <End Role="Info" Type="Self.Info" Multiplicity="1" />
+          <End Role="InfoCommentAgainst" Type="Self.InfoCommentAgainst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="Info_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentAgainst">
+              <PropertyRef Name="Info_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentSupport_Info1">
+          <End Role="Info" Type="Self.Info" Multiplicity="1" />
+          <End Role="InfoCommentSupport" Type="Self.InfoCommentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Info">
+              <PropertyRef Name="Info_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentSupport">
+              <PropertyRef Name="Info_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoComment_InfoComment">
+          <End Role="InfoComment" Type="Self.InfoComment" Multiplicity="1" />
+          <End Role="InfoComment1" Type="Self.InfoComment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="InfoComment">
+              <PropertyRef Name="IC_ID" />
+            </Principal>
+            <Dependent Role="InfoComment1">
+              <PropertyRef Name="IC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoComment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="InfoComment" Type="Self.InfoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="InfoComment">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentBack_InfoComment">
+          <End Role="InfoComment" Type="Self.InfoComment" Multiplicity="0..1" />
+          <End Role="InfoCommentBack" Type="Self.InfoCommentBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoComment">
+              <PropertyRef Name="IC_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentBack">
+              <PropertyRef Name="IC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentAgainst_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="InfoCommentAgainst" Type="Self.InfoCommentAgainst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentAgainst">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentBack_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="InfoCommentBack" Type="Self.InfoCommentBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentBack">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfoCommentSupport_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="InfoCommentSupport" Type="Self.InfoCommentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="InfoCommentSupport">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoComment_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="VideoComment">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentAgainst_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="VideoCommentAgainst" Type="Self.VideoCommentAgainst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentAgainst">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentBack_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="VideoCommentBack" Type="Self.VideoCommentBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentBack">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentSupport_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="VideoCommentSupport" Type="Self.VideoCommentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserInfo_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentSupport">
+              <PropertyRef Name="UserInfo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Video_Video">
+          <End Role="VideoClass" Type="Self.VideoClass" Multiplicity="1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoClass">
+              <PropertyRef Name="VideoClass_ID" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="VideoClass_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoComment_Video">
+          <End Role="Video" Type="Self.Video" Multiplicity="1" />
+          <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Video">
+              <PropertyRef Name="Video_ID" />
+            </Principal>
+            <Dependent Role="VideoComment">
+              <PropertyRef Name="Video_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentAgainst_Video">
+          <End Role="Video" Type="Self.Video" Multiplicity="1" />
+          <End Role="VideoCommentAgainst" Type="Self.VideoCommentAgainst" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Video">
+              <PropertyRef Name="Video_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentAgainst">
+              <PropertyRef Name="Video_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentSupport_Video">
+          <End Role="Video" Type="Self.Video" Multiplicity="1" />
+          <End Role="VideoCommentSupport" Type="Self.VideoCommentSupport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Video">
+              <PropertyRef Name="Video_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentSupport">
+              <PropertyRef Name="Video_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VideoCommentBack_VideoComment">
+          <End Role="VideoComment" Type="Self.VideoComment" Multiplicity="1" />
+          <End Role="VideoCommentBack" Type="Self.VideoCommentBack" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoComment">
+              <PropertyRef Name="VC_ID" />
+            </Principal>
+            <Dependent Role="VideoCommentBack">
+              <PropertyRef Name="VC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Border" EntityType="Self.Border" />
+          <EntitySet Name="Collection" EntityType="Self.Collection" />
+          <EntitySet Name="GetGoods" EntityType="Self.GetGoods" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" />
+          <EntitySet Name="GoodsComment" EntityType="Self.GoodsComment" />
+          <EntitySet Name="GoodsSave" EntityType="Self.GoodsSave" />
+          <EntitySet Name="GoodsType" EntityType="Self.GoodsType" />
+          <EntitySet Name="ICC" EntityType="Self.ICC" />
+          <EntitySet Name="Info" EntityType="Self.Info" />
+          <EntitySet Name="InfoClass" EntityType="Self.InfoClass" />
+          <EntitySet Name="InfoComment" EntityType="Self.InfoComment" />
+          <EntitySet Name="InfoCommentAgainst" EntityType="Self.InfoCommentAgainst" />
+          <EntitySet Name="InfoCommentBack" EntityType="Self.InfoCommentBack" />
+          <EntitySet Name="InfoCommentSupport" EntityType="Self.InfoCommentSupport" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
+          <EntitySet Name="Video" EntityType="Self.Video" />
+          <EntitySet Name="VideoClass" EntityType="Self.VideoClass" />
+          <EntitySet Name="VideoComment" EntityType="Self.VideoComment" />
+          <EntitySet Name="VideoCommentAgainst" EntityType="Self.VideoCommentAgainst" />
+          <EntitySet Name="VideoCommentBack" EntityType="Self.VideoCommentBack" />
+          <EntitySet Name="VideoCommentSupport" EntityType="Self.VideoCommentSupport" />
+          <AssociationSet Name="FK_Border_GoodsType" Association="Self.FK_Border_GoodsType">
+            <End Role="GoodsType" EntitySet="GoodsType" />
+            <End Role="Border" EntitySet="Border" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_Border" Association="Self.FK_Goods_Border">
+            <End Role="Border" EntitySet="Border" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_Goods" Association="Self.FK_Collection_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_UserInfo" Association="Self.FK_Collection_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GetGoods_UserInfo" Association="Self.FK_GetGoods_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="GetGoods" EntitySet="GetGoods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_GoodsType" Association="Self.FK_Goods_GoodsType">
+            <End Role="GoodsType" EntitySet="GoodsType" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsComment_GoodsComment" Association="Self.FK_GoodsComment_GoodsComment">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="GoodsComment" EntitySet="GoodsComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsSave_Goods" Association="Self.FK_GoodsSave_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="GoodsSave" EntitySet="GoodsSave" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Goods" Association="Self.FK_Order_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GoodsComment_UserInfo" Association="Self.FK_GoodsComment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="GoodsComment" EntitySet="GoodsComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ICC_InfoClass" Association="Self.FK_ICC_InfoClass">
+            <End Role="InfoClass" EntitySet="InfoClass" />
+            <End Role="ICC" EntitySet="ICC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_ICC" Association="Self.FK_Info_ICC">
+            <End Role="ICC" EntitySet="ICC" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Info_InfoClass" Association="Self.FK_Info_InfoClass">
+            <End Role="InfoClass" EntitySet="InfoClass" />
+            <End Role="Info" EntitySet="Info" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoComment_Info" Association="Self.FK_InfoComment_Info">
+            <End Role="Info" EntitySet="Info" />
+            <End Role="InfoComment" EntitySet="InfoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentAgainst_Info" Association="Self.FK_InfoCommentAgainst_Info">
+            <End Role="Info" EntitySet="Info" />
+            <End Role="InfoCommentAgainst" EntitySet="InfoCommentAgainst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentSupport_Info1" Association="Self.FK_InfoCommentSupport_Info1">
+            <End Role="Info" EntitySet="Info" />
+            <End Role="InfoCommentSupport" EntitySet="InfoCommentSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoComment_InfoComment" Association="Self.FK_InfoComment_InfoComment">
+            <End Role="InfoComment" EntitySet="InfoComment" />
+            <End Role="InfoComment1" EntitySet="InfoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoComment_UserInfo" Association="Self.FK_InfoComment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="InfoComment" EntitySet="InfoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentBack_InfoComment" Association="Self.FK_InfoCommentBack_InfoComment">
+            <End Role="InfoComment" EntitySet="InfoComment" />
+            <End Role="InfoCommentBack" EntitySet="InfoCommentBack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentAgainst_UserInfo" Association="Self.FK_InfoCommentAgainst_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="InfoCommentAgainst" EntitySet="InfoCommentAgainst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentBack_UserInfo" Association="Self.FK_InfoCommentBack_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="InfoCommentBack" EntitySet="InfoCommentBack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfoCommentSupport_UserInfo" Association="Self.FK_InfoCommentSupport_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="InfoCommentSupport" EntitySet="InfoCommentSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_UserInfo" Association="Self.FK_Order_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoComment_UserInfo" Association="Self.FK_VideoComment_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="VideoComment" EntitySet="VideoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentAgainst_UserInfo" Association="Self.FK_VideoCommentAgainst_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="VideoCommentAgainst" EntitySet="VideoCommentAgainst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentBack_UserInfo" Association="Self.FK_VideoCommentBack_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="VideoCommentBack" EntitySet="VideoCommentBack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentSupport_UserInfo" Association="Self.FK_VideoCommentSupport_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="VideoCommentSupport" EntitySet="VideoCommentSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Video_Video" Association="Self.FK_Video_Video">
+            <End Role="VideoClass" EntitySet="VideoClass" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoComment_Video" Association="Self.FK_VideoComment_Video">
+            <End Role="Video" EntitySet="Video" />
+            <End Role="VideoComment" EntitySet="VideoComment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentAgainst_Video" Association="Self.FK_VideoCommentAgainst_Video">
+            <End Role="Video" EntitySet="Video" />
+            <End Role="VideoCommentAgainst" EntitySet="VideoCommentAgainst" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentSupport_Video" Association="Self.FK_VideoCommentSupport_Video">
+            <End Role="Video" EntitySet="Video" />
+            <End Role="VideoCommentSupport" EntitySet="VideoCommentSupport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VideoCommentBack_VideoComment" Association="Self.FK_VideoCommentBack_VideoComment">
+            <End Role="VideoComment" EntitySet="VideoComment" />
+            <End Role="VideoCommentBack" EntitySet="VideoCommentBack" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CTModelStoreContainer" CdmEntityContainer="CTEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="CTModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
+                <ScalarProperty Name="Admin_Name" ColumnName="Admin_Name" />
+                <ScalarProperty Name="Admin_Password" ColumnName="Admin_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Border">
+            <EntityTypeMapping TypeName="CTModel.Border">
+              <MappingFragment StoreEntitySet="Border">
+                <ScalarProperty Name="Border_ID" ColumnName="Border_ID" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Border_Name" ColumnName="Border_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Collection">
+            <EntityTypeMapping TypeName="CTModel.Collection">
+              <MappingFragment StoreEntitySet="Collection">
+                <ScalarProperty Name="Collection_ID" ColumnName="Collection_ID" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+                <ScalarProperty Name="Goods_ID" ColumnName="Goods_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GetGoods">
+            <EntityTypeMapping TypeName="CTModel.GetGoods">
+              <MappingFragment StoreEntitySet="GetGoods">
+                <ScalarProperty Name="GetGoods_ID" ColumnName="GetGoods_ID" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+                <ScalarProperty Name="GetGoods_Name" ColumnName="GetGoods_Name" />
+                <ScalarProperty Name="GetGoods_Address" ColumnName="GetGoods_Address" />
+                <ScalarProperty Name="GetGoods_Telephone" ColumnName="GetGoods_Telephone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goods">
+            <EntityTypeMapping TypeName="CTModel.Goods">
+              <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="Goods_ID" ColumnName="Goods_ID" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Border_ID" ColumnName="Border_ID" />
+                <ScalarProperty Name="Goods_Name" ColumnName="Goods_Name" />
+                <ScalarProperty Name="Goods_Content" ColumnName="Goods_Content" />
+                <ScalarProperty Name="Goods_Img" ColumnName="Goods_Img" />
+                <ScalarProperty Name="Goods_Price" ColumnName="Goods_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsComment">
+            <EntityTypeMapping TypeName="CTModel.GoodsComment">
+              <MappingFragment StoreEntitySet="GoodsComment">
+                <ScalarProperty Name="GoodsComment_ID" ColumnName="GoodsComment_ID" />
+                <ScalarProperty Name="Goods_ID" ColumnName="Goods_ID" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+                <ScalarProperty Name="GoodsComment_Content" ColumnName="GoodsComment_Content" />
+                <ScalarProperty Name="GoodsComment_Time" ColumnName="GoodsComment_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsSave">
+            <EntityTypeMapping TypeName="CTModel.GoodsSave">
+              <MappingFragment StoreEntitySet="GoodsSave">
+                <ScalarProperty Name="GoodsSave_ID" ColumnName="GoodsSave_ID" />
+                <ScalarProperty Name="Goods_ID" ColumnName="Goods_ID" />
+                <ScalarProperty Name="GoodsSave_Num" ColumnName="GoodsSave_Num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsType">
+            <EntityTypeMapping TypeName="CTModel.GoodsType">
+              <MappingFragment StoreEntitySet="GoodsType">
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Type_Name" ColumnName="Type_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ICC">
+            <EntityTypeMapping TypeName="CTModel.ICC">
+              <MappingFragment StoreEntitySet="ICC">
+                <ScalarProperty Name="ICC_ID" ColumnName="ICC_ID" />
+                <ScalarProperty Name="ICC_Name" ColumnName="ICC_Name" />
+                <ScalarProperty Name="InfoClass_ID" ColumnName="InfoClass_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Info">
+            <EntityTypeMapping TypeName="CTModel.Info">
+              <MappingFragment StoreEntitySet="Info">
+                <ScalarProperty Name="Info_ID" ColumnName="Info_ID" />
+                <ScalarProperty Name="Info_Title" ColumnName="Info_Title" />
+                <ScalarProperty Name="Info_Content" ColumnName="Info_Content" />
+                <ScalarProperty Name="Info_Img" ColumnName="Info_Img" />
+                <ScalarProperty Name="Info_Time" ColumnName="Info_Time" />
+                <ScalarProperty Name="InfoClass_ID" ColumnName="InfoClass_ID" />
+                <ScalarProperty Name="ICC_ID" ColumnName="ICC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoClass">
+            <EntityTypeMapping TypeName="CTModel.InfoClass">
+              <MappingFragment StoreEntitySet="InfoClass">
+                <ScalarProperty Name="InfoClass_ID" ColumnName="InfoClass_ID" />
+                <ScalarProperty Name="Info_Class" ColumnName="Info_Class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoComment">
+            <EntityTypeMapping TypeName="CTModel.InfoComment">
+              <MappingFragment StoreEntitySet="InfoComment">
+                <ScalarProperty Name="IC_ID" ColumnName="IC_ID" />
+                <ScalarProperty Name="Info_ID" ColumnName="Info_ID" />
+                <ScalarProperty Name="IC_Content" ColumnName="IC_Content" />
+                <ScalarProperty Name="IC_Time" ColumnName="IC_Time" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoCommentAgainst">
+            <EntityTypeMapping TypeName="CTModel.InfoCommentAgainst">
+              <MappingFragment StoreEntitySet="InfoCommentAgainst">
+                <ScalarProperty Name="ICA_ID" ColumnName="ICA_ID" />
+                <ScalarProperty Name="Info_ID" ColumnName="Info_ID" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoCommentBack">
+            <EntityTypeMapping TypeName="CTModel.InfoCommentBack">
+              <MappingFragment StoreEntitySet="InfoCommentBack">
+                <ScalarProperty Name="ICB_ID" ColumnName="ICB_ID" />
+                <ScalarProperty Name="ICB_Content" ColumnName="ICB_Content" />
+                <ScalarProperty Name="ICB_Time" ColumnName="ICB_Time" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+                <ScalarProperty Name="IC_ID" ColumnName="IC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoCommentSupport">
+            <EntityTypeMapping TypeName="CTModel.InfoCommentSupport">
+              <MappingFragment StoreEntitySet="InfoCommentSupport">
+                <ScalarProperty Name="ICS_ID" ColumnName="ICS_ID" />
+                <ScalarProperty Name="Info_ID" ColumnName="Info_ID" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="CTModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+                <ScalarProperty Name="Goods_ID" ColumnName="Goods_ID" />
+                <ScalarProperty Name="Order_GoodsNum" ColumnName="Order_GoodsNum" />
+                <ScalarProperty Name="Order_Time" ColumnName="Order_Time" />
+                <ScalarProperty Name="Goods_Price" ColumnName="Goods_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfo">
+            <EntityTypeMapping TypeName="CTModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+                <ScalarProperty Name="UserInfo_Img" ColumnName="UserInfo_Img" />
+                <ScalarProperty Name="UserInfo_Name" ColumnName="UserInfo_Name" />
+                <ScalarProperty Name="UserInfo_Password" ColumnName="UserInfo_Password" />
+                <ScalarProperty Name="UserInfo_Email" ColumnName="UserInfo_Email" />
+                <ScalarProperty Name="UserInfo_Phone" ColumnName="UserInfo_Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Video">
+            <EntityTypeMapping TypeName="CTModel.Video">
+              <MappingFragment StoreEntitySet="Video">
+                <ScalarProperty Name="Video_ID" ColumnName="Video_ID" />
+                <ScalarProperty Name="Video_Title" ColumnName="Video_Title" />
+                <ScalarProperty Name="Video_Url" ColumnName="Video_Url" />
+                <ScalarProperty Name="Video_Img" ColumnName="Video_Img" />
+                <ScalarProperty Name="VideoClass_ID" ColumnName="VideoClass_ID" />
+                <ScalarProperty Name="Video_Time" ColumnName="Video_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoClass">
+            <EntityTypeMapping TypeName="CTModel.VideoClass">
+              <MappingFragment StoreEntitySet="VideoClass">
+                <ScalarProperty Name="VideoClass_ID" ColumnName="VideoClass_ID" />
+                <ScalarProperty Name="Video_Class" ColumnName="Video_Class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoComment">
+            <EntityTypeMapping TypeName="CTModel.VideoComment">
+              <MappingFragment StoreEntitySet="VideoComment">
+                <ScalarProperty Name="VC_ID" ColumnName="VC_ID" />
+                <ScalarProperty Name="Video_ID" ColumnName="Video_ID" />
+                <ScalarProperty Name="VC_Content" ColumnName="VC_Content" />
+                <ScalarProperty Name="VC_Time" ColumnName="VC_Time" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoCommentAgainst">
+            <EntityTypeMapping TypeName="CTModel.VideoCommentAgainst">
+              <MappingFragment StoreEntitySet="VideoCommentAgainst">
+                <ScalarProperty Name="VCA_ID" ColumnName="VCA_ID" />
+                <ScalarProperty Name="Video_ID" ColumnName="Video_ID" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoCommentBack">
+            <EntityTypeMapping TypeName="CTModel.VideoCommentBack">
+              <MappingFragment StoreEntitySet="VideoCommentBack">
+                <ScalarProperty Name="VCB_ID" ColumnName="VCB_ID" />
+                <ScalarProperty Name="VCB_Content" ColumnName="VCB_Content" />
+                <ScalarProperty Name="VCB_Time" ColumnName="VCB_Time" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+                <ScalarProperty Name="VC_ID" ColumnName="VC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoCommentSupport">
+            <EntityTypeMapping TypeName="CTModel.VideoCommentSupport">
+              <MappingFragment StoreEntitySet="VideoCommentSupport">
+                <ScalarProperty Name="VCS_ID" ColumnName="VCS_ID" />
+                <ScalarProperty Name="Video_ID" ColumnName="Video_ID" />
+                <ScalarProperty Name="UserInfo_ID" ColumnName="UserInfo_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

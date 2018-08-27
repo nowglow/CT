@@ -1,0 +1,134 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="~/Content/UserDemo/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/UserDemo/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/UserDemo/css/form-elements.css">
+    <link rel="stylesheet" href="~/Content/UserDemo/css/style.css">
+
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/Content/UserDemo/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/Content/UserDemo/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/Content/UserDemo/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/Content/UserDemo/ico/apple-touch-icon-57-precomposed.png">
+    <!-- Javascript -->
+    <script src="~/Content/UserDemo/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Content/UserDemo/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/UserDemo/js/jquery.backstretch.min.js"></script>
+    <script src="~/Content/UserDemos/js/retina-1.1.0.min.js"></script>
+    
+    <script src="~/Content/UserDemo/js/scripts.js"></script>
+    <style type="text/css">
+        body {
+           background-image: url('../../Content/UserDemo/img/backgrounds/2.jpg');
+        }
+    </style>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        //更换验证码
+        function changeCheckCode() {
+            $("#img").attr("src", $("#img").attr("src") + 1);
+        }
+        //登录返回结果
+        function afterLogin(data) {
+            var serverData = data.split(':');
+            if (serverData[0] == "ok") {
+                alert("登录成功！");
+                window.location.href = "/Info/Info_Index"
+            } else if (serverData[0] == "no") {
+                $("#errorMsg").text(serverData[1]);
+                
+                changeCheckCode();
+            } else {
+                
+                window.location.href = "/Error.html"
+            }
+
+        }
+    </script>
+
+    <div class="top-content">
+
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7 text">
+                        <h1><strong>云端科技</strong> </h1>
+                        <div class="description">
+
+                        </div>
+                        <div class="top-big-link">
+
+                            <a class="btn btn-link-1" href="@Url.Action("Login","Account")">登录</a>
+                            <a class="btn btn-link-2" href="@Url.Action("Register","Account")">注册</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>登录</h3>
+                                <p>Welcome to Cloud Technology！</p>
+
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            @using (Ajax.BeginForm("CheckLogin", new { }, new AjaxOptions() { OnSuccess = "afterLogin" }, new { id = "loginForm" }))
+                            {
+                                @*<form role="form" action="" method="post" class="registration-form">*@
+                                <div class="form-group">
+                                    <h4>用户名：</h4>
+
+                                    <input type="text" name="LoginCode" id="LoginCode" class="form-first-name form-control">
+                                </div>
+                                <div class="form-group">
+                                    <h4>密码：</h4>
+
+                                    <input type="password" name="LoginPwd" id="LoginPwd" class="form-last-name form-control">
+                                </div>
+                                <div class="form-group">
+                                    <h4>验证码：</h4>
+                                    <input type="text" class="login-text" id="code" name="vCode" value="1" />
+
+                                    <img id="img" src="/Account/ValidateCode/?id=1" style=" height: 48px;" />
+                                    <div style="float: left; margin-left: 5px; margin-top: 10px;">
+                                        <a href="javascript:void(0)" onclick="changeCheckCode();return false;">看不清，换一张</a>
+                                    </div>
+
+                                    <button type="submit" class="btn">登录</button>
+
+                                </div>
+                                @*</form>*@
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>

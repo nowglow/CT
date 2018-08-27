@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="col-sm-6">
+        <section class="panel">
+            <header class="panel-heading">
+               新闻资讯支持排行榜前五
+            </header>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>新闻ID</th>
+                        <th>新闻标题</th>
+                        <th>支持数量</th>                      
+                    </tr>
+                </thead>
+                <tbody>
+                  @foreach(var item in ViewBag.InfoSupport)
+                  {
+                      <tr class="success">
+                        <td>@item.Info_ID</td>
+                        <td>@item.Info_Title</td>
+                        <td>@item.InfoSupportNum</td>
+                    </tr>
+                   
+                  }
+                    
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div class="col-sm-6">
+        <section class="panel">
+            <header class="panel-heading">
+                视频评测支持排行榜前五
+            </header>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>评测ID</th>
+                        <th>评测标题</th>
+                        <th>支持数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  @foreach(var item in ViewBag.VideoSupport)
+                  {
+                      <tr class="success">
+                        <td>@item.Video_ID</td>
+                        <td>@item.Video_Title</td>
+                        <td>@item.VideoSupportNum</td>
+                    </tr>
+                   
+                  }               
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <section class="panel">
+            <header class="panel-heading">
+                新闻资讯反对排行榜前五
+            </header>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>新闻ID</th>
+                        <th>新闻标题</th>
+                        <th>反对数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     @foreach(var item in ViewBag.InfoAgainst)
+                      {
+                            <tr class="danger">
+                            <td>@item.Info_ID</td>
+                            <td>@item.Info_Title</td>
+                            <td>@item.InfoAgainstNum</td>
+                        </tr>
+                   
+                      }            
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div class="col-sm-6">
+        <section class="panel">
+            <header class="panel-heading">
+                视频评测反对排行榜前五
+            </header>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>评测ID</th>
+                        <th>评测标题</th>
+                        <th>发对数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in ViewBag.VideoAgainst)
+                      {
+                            <tr class="danger">
+                            <td>@item.Video_ID</td>
+                            <td>@item.Video_Title</td>
+                            <td>@item.VideoAgainsttNum</td>
+                        </tr>
+                   
+                      }                               
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>

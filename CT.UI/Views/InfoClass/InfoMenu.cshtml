@@ -1,0 +1,26 @@
+﻿@model CT.UI.Models.InfoClassModel
+@{
+
+    Layout = null;
+}
+
+<div class="widget">
+    
+    <ul class="list-unstyled category-list">
+        @foreach (var item in Model.InfoClasses)
+        {
+            <li><a href="@Url.Action("InfoContent","Info",new { id = item.InfoClass_ID })"><h4><strong>@item.Info_Class</strong> </h4></a></li>
+
+
+            <ul class="sub-category-list">
+                @foreach (CT.Model.ICC we in item.ICC.Where(u => u.InfoClass_ID == item.InfoClass_ID).ToList().AsReadOnly())
+                {
+                    <li><a href="@Url.Action("InfoContent","Info",new { id = item.InfoClass_ID,hasicc="have"})"><strong>@we.ICC_Name</strong></a></li>
+                }
+            </ul>
+
+        }
+    </ul>
+</div>
+
+

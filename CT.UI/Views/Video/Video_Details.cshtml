@@ -1,0 +1,164 @@
+﻿@model CT.UI.Models.VideoModel
+@{
+    Layout = "~/Views/Shared/Info.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>VideoDetails</title>
+    <script type="text/javascript" src="~/Content/InfoDemo/ckplayer/ckplayer.js"></script>
+    <script>
+        function load() {
+            var vdhf = document.getElementById("ver");
+            var vid = vdhf.value;
+            var flashvars = {
+                f: vid,
+                a: '1',
+                s: 0,
+                c: 0,
+                my_url: encodeURIComponent(window.location.href),
+                my_title: encodeURIComponent(document.title),
+                loaded: 'loadedHandler',
+                b: 0,
+
+                my_pic: 'images/1.jpg',
+                loaded: 'loadedHandler'
+            };
+            var video = ['http://movie.ks.js.cn/flv/other/1_0.mp4->video/mp4'];
+            CKobject.embed('/Content/InfoDemo/ckplayer/ckplayer.swf', 'a1', 'ckplayer_a1', '1150', '720', false, flashvars, video);
+        }
+
+    </script>
+    
+</head>
+<body onload="load()">
+    <div>
+        <div class="page-content">
+            <div class="container">
+                <div class="portfolio-media media-carousel" id="a1" >
+                    @Html.HiddenFor(Model=>Model.Video_Url, new { id = "ver" });
+                </div>
+                
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+
+                            @*查询用户是否点过赞
+        如果点过赞则取消赞*@
+                            @if (ViewBag.videosupport != null)
+                            {
+                                <a href=" @Url.Action("Video_Details", "Video", new { videoid=Model.Video_ID,support = "no" }) "><img src="~/Content/InfoDemo/img/已赞.png" width="20" height="20" /><b>已点赞</b>  </a>
+
+                            }
+                            // 如果没点赞则点赞数加一
+                            else
+                            {
+
+                                <a href=" @Url.Action("Video_Details", "Video", new { videoid=Model.Video_ID,support = "yes" })"> <img src="~/Content/InfoDemo/img/未赞.png" width="20" height="20" />点赞  </a>
+                            }
+                            @*查询用户是否点过踩
+        如果点过赞则取消踩*@
+                            @if (ViewBag.videoagainst != null)
+                            {
+                                <a href="@Url.Action("Video_Details", "Video", new { videoid=Model.Video_ID,against = "no" }) "><img src="~/Content/InfoDemo/img/已踩.png" width="20" height="20" /><b>已踩</b>  </a>
+
+                            }
+                            // 如果没点赞则点赞数加一
+                            else
+                            {
+
+                                <a href=" @Url.Action("Video_Details", "Video", new { videoid=Model.Video_ID,against = "yes" }) "> <img src="~/Content/InfoDemo/img/踩.png" width="20" height="20" />踩  </a>
+                            }
+                            <!-- 发表评论-->
+                            <section class="comment-form margin-bottom">
+                                @using (Html.BeginForm("VideoComment", "VideoComments", FormMethod.Post, new { id = "pinglun" }))
+                                {
+                                    <h2 class="section-heading">留下评论</h2>
+
+                                    @*<form class="form-horizontal comment-form" role="form">*@
+                                    <div class="form-group">
+                                        <label for="comment-text" class="control-label sr-only">Comments</label>
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" name="comment-text" id="comment-text" rows="5" cols="30" placeholder="评论内容"></textarea>
+                                        </div>
+                                    </div>
+                                    Session["videoid"] = Model.Video_ID;
+                                    <input type="hidden" name="videoid" value="@Model.Video_ID" />
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            @if (Session["user_Name"] != null)
+                                            {
+                                                <a href="javascript:document.getElementById('pinglun').submit()" class="btn btn-primary">发表评论</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" class="btn btn-primary">发表</a>
+                                            }
+                                        </div>
+                                    </div>
+
+                                }
+                            </section>
+                            <!-- 显示评论 -->
+                            <article class="comments">
+                                <h2 class="section-heading"></h2>
+                                <ul class="media-list">
+                                    @{ Html.RenderAction("VideoComment", "Video"); }
+                                </ul>
+                            </article>
+                        </div>
+                        <div class="col-md-3">
+                            <!-- RIGHT SIDEBAR CONTENT -->
+                            <div class="widget">
+                                <h2 class="section-heading">视频标题：@Model.Video_Title</h2>
+                                <ul class="contact-info fa-ul">
+                                    <li><i class="fa fa-li fa-building-o"></i>点赞数：@ViewBag.videosupportnum</li>
+                                    <li><i class="fa fa-li fa-building-o"></i>反对数： @ViewBag.videoagainstnum</li>
+                                    <li><i class="fa fa-li fa-building-o"></i>时间：@Model.Video_Time</li>
+                                    <li><i class="fa fa-li fa-phone"></i> +621 234 4567</li>
+                                    <li><i class="fa fa-li fa-envelope-o"></i> <a href="mailto:hello@yourcompany.com">hello@yourcompany.com</a></li>
+                                </ul>
+                            </div>
+
+
+                            <!-- END RIGHT SIDEBAR CONTENT -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- END PORTFOLIO ITEM -->
+                <hr>
+                <!-- RELATED PORTFOLIO -->
+                <div class="portfolio-item-wrapper portfolio-related">
+                    <h2 class="section-heading">最新视频</h2>
+                    <ul class="portfolio-item-list spaced row">
+                        @foreach (var it in ViewBag.videoupdate)
+                        {
+                            <li class="col-md-4">
+                                <div class="portfolio-item">
+                                    <div class="overlay"></div>
+                                    <div class="info">
+                                        <h4 class="title">@it.Video_Title</h4>
+                                        <a href="@Url.Action("Video_Details","Video",new { videoid = it.Video_ID })" class="btn">了解详情</a>
+                                    </div>
+                                    <div class="media-wrapper">
+                                        <img src="@it.Video_Img" alt="This is the description">
+                                    </div>
+                                </div>
+                            </li>
+                        }
+
+
+                    </ul>
+                </div>
+                <!-- END RELATED PORTFOLIO -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

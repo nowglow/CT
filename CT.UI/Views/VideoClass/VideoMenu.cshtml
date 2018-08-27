@@ -1,0 +1,10 @@
+﻿
+<ul class="list-inline portfolio-item-filters">
+
+    <li><a class="active" href="@Url.Action("VideoIndex","Video",null)">所有</a></li>
+    @foreach (var item in ViewBag.videoClassModel)
+    {
+        <li><a href="@Url.Action("VideoIndex","Video",new { id=item.VideoClass_ID})">@item.Video_Class</a></li>
+    }
+
+</ul>

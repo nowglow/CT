@@ -1,0 +1,60 @@
+﻿@model CT.UI.Models.InfoCommentModel
+@{
+
+    Layout = null;
+}
+@foreach (var item in Model.InfoComment)
+{
+    <li class="media">
+        <a href="#" class="media-left">
+            <img src="@item.UserInfo.UserInfo_Img" class="avatar" alt="avatar">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading comment-author"><a href="#">@item.UserInfo.UserInfo_Name</a></h4><span class="timestamp text-muted">@item.IC_Time</span>
+            <p>@item.IC_Content</p>
+            <p><button class="fa fa-reply" onclick="document.getElementById('@item.IC_ID').style.display = document.getElementById('@item.IC_ID').style.display == '' ? 'none' : ''">回复</button></p>
+            <div id="@item.IC_ID" style="display:none;">
+                @using (Html.BeginForm("ReplyComments", "InfoCommentBacks", new { icid = item.IC_ID }, FormMethod.Post, new { id = "CreateForm", enctype = "multipart/form-data" }))
+                {
+                    <div class="PostRly01">
+                        <textarea style="resize:none;" class="form-control" rows="3" name="textarea1" placeholder="我也要简单说两句"></textarea>
+                    </div>
+                    <div class="PostRly02">
+
+                        <div class="Rly02-B">
+                            @if (Session["user_ID"] != null)
+                            {
+                                <input type="submit" value="提交" class="fa fa-reply" />
+                            }
+                            else
+                            {
+
+                                <input onclick="confirm('请先登录')?location.href='@Url.Action("Login", "Account")':''" href="javascript:;" type="button" value="提交">
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @foreach (CT.Model.InfoCommentBack B in Model.InfoCommentBack.Where(u => u.IC_ID == item.IC_ID).ToList().AsReadOnly())
+            {
+                <div class="media comment-by-author">
+                    <a href="#" class="media-left">
+                        <img src="@B.UserInfo.UserInfo_Img" class="avatar" alt="avatar">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading comment-author"><a href="#"><</a>@B.UserInfo.UserInfo_Name</h4><span class="timestamp text-muted">@B.ICB_Time</span>
+                        <p>@B.ICB_Content</p>
+
+                        <hr>
+                    </div>
+
+
+                </div>
+            }
+
+
+        </div>
+
+    </li>
+}

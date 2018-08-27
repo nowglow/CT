@@ -1,0 +1,189 @@
+﻿@using CT.UI.Models
+@{
+    Layout = "~/Views/Shared/Info.cshtml";
+}
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Information</title>
+</head>
+<body>
+    <div>
+        @*图片滚动*@
+        <section class="hero-unit-slider slider-responsive no-margin">
+            <div id="carousel-hero" class="slick-carousel">
+
+                <div class="carousel-inner" role="listbox">
+                    @foreach (var i in ViewBag.infos)
+                    {
+                        <div class="item active">
+                            <img src="@i.Info_Img" class="img-responsive" alt="Slider Image">
+                            <div class="carousel-caption">
+                                <h2 class="hero-heading"> @i.Info_Title</h2>
+                                @if (i.Info_ID != null)
+                                {
+                                <a href="@Url.Action("Info_Details", "Info", new { infoid = i.Info_ID })"class="btn btn-lg hero-button">了解详情</a>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                }
+
+            </div>
+        </section>
+        <br />
+        <!-- RECENT WORKS -->
+        <section class="recent-works">
+            <div class="container">
+                <h2 class="section-heading pull-left">最新视频</h2>
+                <a href="@Url.Action("VideoIndex","Video")" class="btn btn-primary pull-right">所有视频</a>
+                <div class="clearfix"></div>
+                <div class="portfolio-static">
+                    <div class="row">
+                        @foreach (var q in ViewBag.videos)
+                        {
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <div class="overlay"></div>
+                                    <div class="info">
+                                        <h4 class="title"></h4>
+                                        <p class="brief-description">@q.Video_Title</p>
+                                        @if (q.Video_ID != null)
+                                        {
+                                        <a href="@Url.Action("Video_Details", "Video", new { videoid = q.Video_ID })" class="btn">详情</a>}
+                                    </div>
+                                    <div class="media-wrapper">
+                                        <img src="@q.Video_Img" alt="Item Thumbnail" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @*<div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <div class="overlay"></div>
+                                    <div class="info">
+                                        <h4 class="title">Perfect Edge</h4>
+                                        <p class="brief-description">Product Design</p>
+                                        <a href="#" class="btn">read more</a>
+                                    </div>
+                                    <div class="media-wrapper">
+                                        <img src="~/Content/InfoDemo/img/portfolio/800x500/work6.png" alt="Item Thumbnail" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="portfolio-item">
+                                    <div class="overlay"></div>
+                                    <div class="info">
+                                        <h4 class="title">Sunny Day</h4>
+                                        <p class="brief-description">Photography</p>
+                                        <a href="#" class="btn">read more</a>
+                                    </div>
+                                    <div class="media-wrapper">
+                                        <img src="~/Content/InfoDemo/img/portfolio/800x500/work7.png" alt="Item Thumbnail" />
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END RECENT WORKS -->
+        <!-- LATEST NEWS -->
+        <section>
+            <div class="container">
+                <h2 class="section-heading">最新资讯</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="news-item news-featured">
+                            <a href="#"><img src="~/Content/InfoDemo/img/news/featured-news.png" class="img-responsive" alt="News Thumbnail"></a>
+                            <h3 class="news-title"><a href="@Url.Action("Info_Details", "Info", new { infoid = ViewBag.info1.Info_ID })">@ViewBag.info1.Info_Title</a></h3>
+                            <p>@ViewBag.info1.Info_Content</p>
+                            <div class="news-meta">
+                                <span class="news-datetime">@ViewBag.info1.Info_Time</span>
+                                @*<span class="news-comment-count pull-right"><a href="#">65 Comments</a></span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            @foreach (var n in ViewBag.info2)
+                            {
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="news-item margin-bottom-30px clearfix">
+                                        <a href="@Url.Action("Info_Details", "Info", new { infoid = n.Info_ID })"><img src="@n.Info_Img" width="420" height="220" class="img-responsive pull-left" alt="News Thumbnail"></a>
+                                        <div class="right">
+                                            <h3 class="news-title"><a href="@Url.Action("Info_Details", "Info", new { infoid = n.Info_ID })">@n.Info_Title</a></h3>
+                                            <p>@n.Info_Time</p>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            
+                            <div class="col-md-6 col-sm-6">
+                                <div class="see-all-news">
+                                    <a href="@Url.Action("Info_Information","Info")">所有资讯<i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END LATEST NEWS -->
+        <!-- TESTIMONIAL -->
+        <section id="testimoial-parallax" class="testimonial-with-bg parallax">
+            <div class="container">
+                <div class="testimonial slick-carousel">
+                    <div class="testimonial-container">
+                        
+                            @foreach (var item in ViewBag.comment)
+                            {<div class="testimonial-body">
+                                <p>@item.IC_Content</p>
+                                <div class="testimonial-author">
+                                    <img src="@ViewBag.userinfo.UserInfo_Img" alt="Author" class="pull-left">
+                                    <span><span class="author-name">@ViewBag.userinfo.UserInfo_Name</span> <em>@item.IC_Time</em></span>
+                                </div>
+                              </div>
+                            }
+
+                        
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END TESTIMONIAL -->
+        <!-- OUR CLIENTS -->
+        <section class="clients">
+            <div class="container">
+                <h2 class="section-heading">我们的合作伙伴</h2>
+                <ul class="list-inline list-client-logo">
+                    <li>
+                        <a href="#"><img src="~/Content/InfoDemo/img/clients/logo1.png" alt="logo"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="~/Content/InfoDemo/img/clients/logo2.png" alt="logo"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="/Content/InfoDemo/img/clients/logo3.png" alt="logo"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="~/Content/InfoDemo/img/clients/logo4.png" alt="logo"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="~/Content/InfoDemo/img/clients/logo5.png" alt="logo"></a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- END OUR CLIENTS -->
+    </div>
+</body>
+</html>
+

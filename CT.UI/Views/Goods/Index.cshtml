@@ -1,0 +1,80 @@
+﻿@using CT.UI.Models
+@model CT.Common.PagingHelper<CT.UI.Models.GoodsModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">后台管理</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="#">商品信息</a></li>
+            <li><i class="fa fa-table"></i>商品信息管理</li>
+            @*<li><i class="fa fa-th-list"></i></li>*@
+        </ol>
+    </div>
+</div>
+<section class="panel">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>商品ID</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>一级分类</th>
+                <th>二级分类</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.GetPagingData())
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Goods_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Goods_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Goods_Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Border_Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("详情", "Details", new { id = item.Goods_ID }) |
+                        @Html.ActionLink("修改", "Edit", new { id = item.Goods_ID }) |
+                        @Html.ActionLink("删除", "Delete", new { id = item.Goods_ID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+
+                @if (Model.HasPrev)
+                {
+                    <td><a href="@Url.Action("Index", "Goods", new { pageIndex = Model.PageIndex - 1 })">上一页</a></td>
+                }
+                else
+                {
+                    <td><em style="color:Gray">上一页</em></td>
+                }
+                @if (Model.HasNext)
+                {
+                    <td><a href="@Url.Action("Index", "Goods", new { pageIndex = Model.PageIndex + 1 })">下一页</a></td>
+                }
+                else
+                {
+                    <td><em style="color:Gray">下一页</em></td>
+                }
+            </tr>
+        </tfoot>
+    </table>
+</section>

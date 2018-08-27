@@ -1,0 +1,25 @@
+﻿@if (Session["user_Name"] != null)
+{
+    <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎您，@Session["user_Name"]<i class="fa fa-angle-down"></i></a>
+
+        <ul class="dropdown-menu" role="menu">
+            <li>@Html.ActionLink("退出", "Login", "Account")</li>
+        </ul>
+
+    </li>
+    <li>
+        <div style="text-align: center;">
+            <img src="@Session["user_Img"]" style="margin:15px;" width="20" height="20" />
+        </div>
+    </li>
+
+}
+else
+{
+    <li>
+        <a class="btn big-login" data-toggle="modal" href="@Url.Action("Login","Account")" onclick="openLoginModal();">登录</a>
+
+    </li>
+    <li><a class="btn big-register" data-toggle="modal" href="@Url.Action("Register","Account")" onclick="openRegisterModal();">注册</a></li>
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6e9ef33158e6423dbd570a7545da2b8d" Name="Diagram1">
+        <EntityTypeShape EntityType="CTModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.Border" Width="1.5" PointX="1.5" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.Collection" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.GetGoods" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.Goods" Width="1.5" PointX="0.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.GoodsComment" Width="1.5" PointX="6" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.GoodsSave" Width="1.5" PointX="3" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.GoodsType" Width="1.5" PointX="1.5" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.ICC" Width="1.5" PointX="1.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.Info" Width="1.5" PointX="3.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.InfoClass" Width="1.5" PointX="1.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.InfoComment" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.InfoCommentAgainst" Width="1.5" PointX="6" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.InfoCommentBack" Width="1.5" PointX="11.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.InfoCommentSupport" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.Order" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.UserInfo" Width="1.5" PointX="0.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.Video" Width="1.5" PointX="6.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.VideoClass" Width="1.5" PointX="4.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.VideoComment" Width="1.5" PointX="9" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.VideoCommentAgainst" Width="1.5" PointX="6" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.VideoCommentBack" Width="1.5" PointX="11.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CTModel.VideoCommentSupport" Width="1.5" PointX="9" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="CTModel.FK_Border_GoodsType" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_Goods_Border" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_Collection_Goods" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_Collection_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_GetGoods_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_Goods_GoodsType" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_GoodsComment_GoodsComment" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_GoodsSave_Goods" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_Order_Goods" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_GoodsComment_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_ICC_InfoClass" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_Info_ICC" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_Info_InfoClass" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_InfoComment_Info" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_InfoCommentAgainst_Info" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_InfoCommentSupport_Info1" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_InfoComment_InfoComment" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_InfoComment_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_InfoCommentBack_InfoComment" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_InfoCommentAgainst_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_InfoCommentBack_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_InfoCommentSupport_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_Order_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_VideoComment_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_VideoCommentAgainst_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_VideoCommentBack_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_VideoCommentSupport_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_Video_Video" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_VideoComment_Video" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_VideoCommentAgainst_Video" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_VideoCommentSupport_Video" ManuallyRouted="false" />
+        <AssociationConnector Association="CTModel.FK_VideoCommentBack_VideoComment" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

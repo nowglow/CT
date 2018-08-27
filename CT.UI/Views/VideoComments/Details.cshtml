@@ -1,0 +1,61 @@
+﻿@model CT.Model.VideoComment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">后台管理</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="#">视频评测评论</a></li>
+            <li><i class="fa fa-table"></i>评测评论管理</li>
+            <li><i class="fa fa-th-list"></i>详情</li>
+        </ol>
+    </div>
+</div>
+<section class="panel">
+    <h2>Details</h2>
+
+    <div>
+        <h4>VideoComment</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.VC_Content)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VC_Content)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VC_Time)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VC_Time)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UserInfo.UserInfo_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UserInfo.UserInfo_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Video.Video_Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Video.Video_Title)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </section>

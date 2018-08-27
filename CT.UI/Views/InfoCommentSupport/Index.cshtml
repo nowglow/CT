@@ -1,0 +1,19 @@
+﻿@*查询用户是否点过赞
+    如果点过赞则取消赞*@
+@if (ViewBag.a != null)
+{
+    <a href=" @Url.Action("Info_Details", "Info", new { support = "yes" }) "> <input id=" Button1" type="button" value="点赞" style="color:red" />@ViewBag.</a>
+
+}
+// 如果没点赞则点赞数加一
+else
+{
+
+    <a href=" @Url.Action("Info_Details", "Info", new { support = "no" }) ">  < input id = "Button2" type = "button" value = "点赞" >< h1 > @ViewBag.InfoSupportNum </ h1 >
+        </a>
+}
+
+
+
+
+

@@ -1,0 +1,77 @@
+﻿@using CT.UI.Models
+@model CT.Common.PagingHelper<InfoModel>
+    @{
+    ViewBag.Title = "InfoContent";
+    Layout = "~/Views/Shared/_InfoContent.cshtml";
+    }
+
+
+    @*资讯内容*@
+    <div class="blog medium-thumbnail margin-bottom-30px">
+        <!-- blog post -->
+        @foreach (var item in Model.GetPagingData())
+        {
+            
+        <article class="entry-post">
+            <header class="entry-header">
+                <h2 class="entry-title">
+                    <a href="blog-single.html">@item.Info_Title</a>
+                </h2>
+                <div class="meta-line clearfix">
+                    <div class="meta-author-category pull-left">
+                        <span class="post-author">时间： <a href="#">@item.Info_Time</a></span>
+                        
+                    </div>
+                    
+                    <div class="meta-tag-comment pull-right">
+                        <span class="post-tags"><i class="fa fa-tag"></i> <a href="#">@item.Info_Class</a>, <a href="#">@item.ICC_Name</a></span>
+                        
+                    </div>
+                </div>
+            </header>
+            <div class="entry-content clearfix">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <figure class="featured-image">
+                            <a href="blog-single.html">
+                                <div class="post-date-info clearfix"><span class="post-month">DEC</span><span class="post-date">11</span><span class="post-year">2014</span></div>
+                                <img src="@item.Info_Img" class="img-responsive" alt="featured-image" />
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="excerpt">
+                            <p>@item.Info_Content</p>
+                            <p class="read-more">
+                                <a href="@Url.Action("Info_Details","Info",new { infoid=item.Info_ID})" class="btn btn-primary">了解详情 <i class="fa fa-long-arrow-right"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        }
+
+        <ul class="pager">
+
+
+            @if (Model.HasPrev)
+            {
+            <li><a href="@Url.Action("InfoContent", "Info" , new { pageIndex=Model.PageIndex - 1 })">上一页</a></li>
+            }
+            else
+            {
+            <li style="color:Gray">上一页</li>
+            }
+
+            @if (Model.HasNext)
+            {
+            <li><a href="@Url.Action("InfoContent", "Info" , new { pageIndex=Model.PageIndex + 1 })">下一页</a></li>
+            }
+            else
+            {
+            <li style="color:Gray">下一页</li>
+            }
+        </ul>
+
+    </div>
